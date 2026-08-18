@@ -1,0 +1,57 @@
+[
+  {
+    "id": "3_1",
+    "name": "3-1 珊瑚海海战",
+    "chapter": 3,
+    "difficulty": "普通",
+    "drops": {
+      "ships": ["gridley", "laffey"],
+      "equipment": ["gun_130mm_single", "torpedo_533mm_quint", "aa_25mm_triple"]
+    },
+    "notes": "驱逐和基础装备掉落点"
+  },
+  {
+    "id": "7_4",
+    "name": "7-4 铁底湾",
+    "chapter": 7,
+    "difficulty": "困难",
+    "drops": {
+      "ships": ["prince_henry", "unicorn_mod"],
+      "equipment": ["aa_110mm_dual", "aircraft_f4f", "aircraft_tbf"]
+    },
+    "notes": "轻母和高级防空炮掉落点"
+  },
+  {
+    "id": "8_4",
+    "name": "8-4 所罗门海战",
+    "chapter": 8,
+    "difficulty": "困难",
+    "drops": {
+      "ships": ["st_louis", "cleveland"],
+      "equipment": ["gun_155mm_triple", "shell_he"]
+    },
+    "notes": "轻巡顶级主炮掉落点"
+  },
+  {
+    "id": "10_3",
+    "name": "10-3 马里亚纳海战",
+    "chapter": 10,
+    "difficulty": "极难",
+    "drops": {
+      "ships": ["baltimore", "bluemarton"],
+      "equipment": ["gun_203mm_triple", "shell_ap"]
+    },
+    "notes": "重巡顶级主炮掉落点"
+  },
+  {
+    "id": "12_4",
+    "name": "12-4 莱特湾海战",
+    "chapter": 12,
+    "difficulty": "极难",
+    "drops": {
+      "ships": ["alabama", "shinano"],
+      "equipment": ["gun_406mm_triple", "aircraft_ryusei"]
+    },
+    "notes": "战列主炮和顶级舰载机掉落点"
+  }
+]

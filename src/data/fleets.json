@@ -1,0 +1,155 @@
+[
+  {
+    "id": "fleet_1_mixed",
+    "name": "我的第一舰队 · 航战混合队",
+    "category": "user",
+    "front": ["baltimore", "atlanta", "bluemarton"],
+    "back": ["prince_henry", "unicorn_mod", "west_virginia"],
+    "flagship": "prince_henry",
+    "recommendedLevel": 100,
+    "aggregateStats": { "fp": 1045, "trp": 153, "aa": 1772, "air": 992, "control": 988, "cost": 62 },
+    "description": "用户实际编队：航战混合队，后排普林斯顿旗舰+独角兽.改奶航+西弗吉尼亚战列舰，前排巴尔的摩重巡+亚特兰大防空轻巡+布莱默顿辅助重巡",
+    "equipmentTips": {
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
+      "unicorn_mod": "TBF复仇者 + F4F野猫 + 20mm厄利孔机炮",
+      "west_virginia": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "atlanta": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "bluemarton": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷"
+    },
+    "notes": "注意：亚特兰大(Lv.64)和西弗吉尼亚(Lv.64)等级偏低，需要优先练级。综合性能：普林斯顿2842 / 独角兽4210 / 西弗吉尼亚2218 / 巴尔的摩3257 / 亚特兰大2438 / 布莱默顿2597"
+  },
+  {
+    "id": "fleet_2_gunnery",
+    "name": "我的第二舰队 · 炮击队",
+    "category": "user",
+    "front": ["st_louis", "bluemarton", "laffey_ii"],
+    "back": ["alabama", "arizona", "san_hacinto"],
+    "flagship": "alabama",
+    "recommendedLevel": 100,
+    "aggregateStats": { "fp": 1670, "trp": 362, "aa": 1803, "air": 342, "control": 260, "cost": 74 },
+    "description": "用户实际编队：纯炮击队，阿拉巴马旗舰+亚利桑那+圣哈辛托CVL，前排圣路易斯+布莱默顿+拉菲II，炮击面板1670为全队核心输出",
+    "equipmentTips": {
+      "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "arizona": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "san_hacinto": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "bluemarton": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮"
+    },
+    "notes": "已优化：旗舰换阿拉巴马(3600综合性能最高)，格里德利(Lv.74)换为布莱默顿(CA肉盾)。综合性能：阿拉巴马3600 / 亚利桑那3000 / 圣哈辛托2749 / 圣路易斯2695 / 布莱默顿2597 / 拉菲II3726"
+  },
+  {
+    "id": "boss_auto_v1",
+    "name": "Boss 自律队 V1（参考）",
+    "category": "boss",
+    "front": ["baltimore", "st_louis", "laffey_ii"],
+    "back": ["alabama", "unicorn_mod", "prince_henry"],
+    "flagship": "alabama",
+    "recommendedLevel": 100,
+    "description": "通用 Boss 自律阵容，利用现有舰娘配置",
+    "equipmentTips": {
+      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮",
+      "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "unicorn_mod": "TBF复仇者x2 + 25mm三连装机炮",
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮"
+    },
+    "notes": "利用你的现有舰娘池构建的推荐配置"
+  },
+  {
+    "id": "boss_auto_v2",
+    "name": "Boss 炮击特化队（参考）",
+    "category": "boss",
+    "front": ["baltimore", "st_louis", "laffey_ii"],
+    "back": ["alabama", "arizona", "west_virginia"],
+    "flagship": "alabama",
+    "recommendedLevel": 100,
+    "description": "纯炮击 Boss 队，三 BB 齐射配置",
+    "equipmentTips": {
+      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮",
+      "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "arizona": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "west_virginia": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹"
+    },
+    "notes": "需要西弗吉尼亚练级到Lv.100+才能发挥效果"
+  },
+  {
+    "id": "pvp_volley",
+    "name": "PvP 齐射队（参考）",
+    "category": "pvp",
+    "front": ["baltimore", "st_louis", "laffey_ii"],
+    "back": ["alabama", "unicorn_mod", "san_hacinto"],
+    "flagship": "alabama",
+    "recommendedLevel": 100,
+    "description": "PvP 炮击齐射队，追求第一时间爆发输出",
+    "equipmentTips": {
+      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮",
+      "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "unicorn_mod": "TBF复仇者x2 + 25mm三连装机炮",
+      "san_hacinto": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮"
+    },
+    "notes": "PvP 追求先手爆发"
+  },
+  {
+    "id": "pvp_evasion",
+    "name": "PvP 雷击闪避队（参考）",
+    "category": "pvp",
+    "front": ["laffey_ii", "gridley", "atlanta"],
+    "back": ["alabama", "unicorn_mod", "prince_henry"],
+    "flagship": "alabama",
+    "recommendedLevel": 100,
+    "description": "利用拉菲II高闪避+雷击，配合格里德利鱼雷齐射",
+    "equipmentTips": {
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮",
+      "gridley": "127mm单装炮 + 五联装533mm鱼雷x2 + 20mm厄利孔机炮",
+      "atlanta": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "unicorn_mod": "TBF复仇者x2 + 25mm三连装机炮",
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮"
+    },
+    "notes": "格里德利需先练级到Lv.100+"
+  },
+  {
+    "id": "farm_low_cost",
+    "name": "低耗速刷队（参考）",
+    "category": "farm",
+    "front": ["gridley", "st_louis", "laffey_ii"],
+    "back": ["arizona", "prince_henry"],
+    "flagship": "arizona",
+    "recommendedLevel": 70,
+    "description": "低耗高效刷图阵容，适合日常刷物资和经验",
+    "equipmentTips": {
+      "gridley": "127mm单装炮 + 五联装533mm鱼雷x2 + 20mm厄利孔机炮",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮",
+      "arizona": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮"
+    },
+    "notes": "消耗低，效率高，适合长时间挂机"
+  },
+  {
+    "id": "carrier_mobile",
+    "name": "航母机动队（参考）",
+    "category": "special",
+    "front": ["st_louis", "bluemarton", "atlanta"],
+    "back": ["unicorn_mod", "prince_henry", "san_hacinto"],
+    "flagship": "unicorn_mod",
+    "recommendedLevel": 100,
+    "description": "全航母阵容速战速决，3 CVL 空袭覆盖全屏",
+    "equipmentTips": {
+      "unicorn_mod": "TBF复仇者 + F4F野猫 + 25mm三连装机炮",
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
+      "san_hacinto": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
+      "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
+      "bluemarton": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
+      "atlanta": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷"
+    },
+    "notes": "需要亚特兰大和圣哈辛托练级到Lv.100+"
+  }
+]

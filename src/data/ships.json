@@ -1,0 +1,293 @@
+[
+  {
+    "id": "laffey_ii", "name": "拉菲II", "nameEn": "USS Laffey II",
+    "rarity": "ELITE", "shipType": "DD", "faction": "白鹰", "levelCap": 125,
+    "stats": { "hp": 2111, "fp": 117, "trp": 305, "aa": 208, "air": 0, "asw": 154, "spd": 40, "luck": 95 },
+    "slots": ["炮击", "鱼雷", "防空"],
+    "skills": [
+      { "name": "战意激增", "level": 10, "desc": "战斗开始后10秒内，自身炮击、雷击属性提升20%" },
+      { "name": "哨戒任务", "level": 10, "desc": "先锋舰队对潜艇伤害提升25%" },
+      { "name": "背水之战", "level": 10, "desc": "血量低于30%时，机动提升40%，持续8秒" }
+    ],
+    "equipment": { "recommended": ["130mm单装炮", "五联装533mm鱼雷", "25mm三连装机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "防空" },
+    "notes": "反潜/雷击特化，有潜艇感知",
+    "playerInfo": { "owned": true, "level": 125, "fleet": 2, "position": "front", "flagship": false, "fleetStats": { "hp": 2311, "fp": 117, "trp": 305, "综合性能": 3726 } }
+  },
+  {
+    "id": "unicorn_mod", "name": "独角兽·改", "nameEn": "HMS Unicorn Mod",
+    "rarity": "SSR", "shipType": "CVL", "faction": "皇家", "levelCap": 125,
+    "stats": { "hp": 3200, "fp": 0, "trp": 0, "aa": 180, "air": 420, "asw": 0, "spd": 32, "luck": 85 },
+    "slots": ["舰载机", "舰载机", "防空"],
+    "skills": [
+      { "name": "空中支援", "level": 10, "desc": "每20秒触发一次航空支援，恢复前排舰队15%血量" },
+      { "name": "装甲运输", "level": 10, "desc": "先锋舰队受到伤害降低20%" }
+    ],
+    "equipment": { "recommended": ["TBF复仇者", "F4F野猫", "20mm厄利孔机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "防空" },
+    "notes": "辅助奶航，前排回血核心",
+    "playerInfo": { "owned": true, "level": 125, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 5805, "综合性能": 4210 } }
+  },
+  {
+    "id": "baltimore", "name": "巴尔的摩", "nameEn": "USS Baltimore",
+    "rarity": "SSR", "shipType": "CA", "faction": "白鹰", "levelCap": 125,
+    "stats": { "hp": 4200, "fp": 285, "trp": 0, "aa": 220, "air": 0, "asw": 0, "spd": 28, "luck": 80 },
+    "slots": ["重巡主炮", "重巡主炮", "防空", "鱼雷"],
+    "skills": [
+      { "name": "重点打击", "level": 10, "desc": "对重型敌人伤害提升30%" },
+      { "name": "弹药补给", "level": 10, "desc": "自身装填速度提升25%" }
+    ],
+    "equipment": { "recommended": ["203mm三连装炮", "203mm三连装炮", "110mm二连装炮", "五联装533mm鱼雷"], "slot1": "重巡主炮", "slot2": "重巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "重巡核心，高炮击输出",
+    "playerInfo": { "owned": true, "level": 124, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 5351, "综合性能": 3257 } }
+  },
+  {
+    "id": "alabama", "name": "阿拉巴马", "nameEn": "USS Alabama",
+    "rarity": "SSR", "shipType": "BB", "faction": "白鹰", "levelCap": 120,
+    "stats": { "hp": 12500, "fp": 480, "trp": 0, "aa": 160, "air": 0, "asw": 0, "spd": 22, "luck": 80 },
+    "slots": ["战列主炮", "战列主炮", "战列主炮", "防空"],
+    "skills": [
+      { "name": "齐射", "level": 10, "desc": "炮击时有40%概率触发齐射，造成双倍伤害" },
+      { "name": "重装", "level": 10, "desc": "自身炮击属性提升20%" }
+    ],
+    "equipment": { "recommended": ["406mm三连装炮", "406mm三连装炮", "406mm三连装炮", "110mm二连装炮"], "slot1": "战列主炮", "slot2": "战列主炮", "slot3": "战列主炮", "slot4": "防空" },
+    "notes": "后排炮击核心，高爆发",
+    "playerInfo": { "owned": true, "level": 107, "fleet": 2, "position": "back", "flagship": true, "fleetStats": { "hp": 7363, "综合性能": 3600 } }
+  },
+  {
+    "id": "st_louis", "name": "圣路易斯", "nameEn": "USS St. Louis",
+    "rarity": "SSR", "shipType": "CL", "faction": "白鹰", "levelCap": 120,
+    "stats": { "hp": 2800, "fp": 195, "trp": 0, "aa": 250, "air": 0, "asw": 0, "spd": 32, "luck": 85 },
+    "slots": ["轻巡主炮", "轻巡主炮", "防空", "鱼雷"],
+    "skills": [
+      { "name": "连射", "level": 10, "desc": "炮击时有30%概率额外射击一次" },
+      { "name": "防空指挥", "level": 10, "desc": "全队防空属性提升15%" }
+    ],
+    "equipment": { "recommended": ["155mm三连装炮", "155mm三连装炮", "76mm单装炮", "三联装533mm鱼雷"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "轻巡炮击输出，防空指挥",
+    "playerInfo": { "owned": true, "level": 103, "fleet": 2, "position": "front", "flagship": false, "fleetStats": { "hp": 3388, "综合性能": 2695 } }
+  },
+  {
+    "id": "bluemarton", "name": "布莱默顿", "nameEn": "USS Bremerton",
+    "rarity": "SSR", "shipType": "CA", "faction": "白鹰", "levelCap": 115,
+    "stats": { "hp": 3800, "fp": 240, "trp": 0, "aa": 200, "air": 0, "asw": 0, "spd": 28, "luck": 80 },
+    "slots": ["重巡主炮", "重巡主炮", "防空", "鱼雷"],
+    "skills": [
+      { "name": "维修支援", "level": 10, "desc": "每25秒恢复全队5%血量" },
+      { "name": "火力支援", "level": 10, "desc": "后排炮击伤害提升15%" }
+    ],
+    "equipment": { "recommended": ["203mm三连装炮", "203mm三连装炮", "110mm二连装炮", "五联装533mm鱼雷"], "slot1": "重巡主炮", "slot2": "重巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "辅助重巡，提供回血支援",
+    "playerInfo": { "owned": true, "level": 100, "fleet": "both", "position": "front", "flagship": false, "fleetStats": { "hp": 4552, "综合性能": 2597 } }
+  },
+  {
+    "id": "arizona", "name": "亚利桑那", "nameEn": "USS Arizona",
+    "rarity": "SSR", "shipType": "BB", "faction": "白鹰", "levelCap": 115,
+    "stats": { "hp": 11000, "fp": 440, "trp": 0, "aa": 140, "air": 0, "asw": 0, "spd": 22, "luck": 80 },
+    "slots": ["战列主炮", "战列主炮", "战列主炮", "防空"],
+    "skills": [
+      { "name": "战列舰之魂", "level": 10, "desc": "炮击伤害提升25%" },
+      { "name": "厚甲", "level": 10, "desc": "自身耐久提升20%" }
+    ],
+    "equipment": { "recommended": ["406mm三连装炮", "406mm三连装炮", "406mm三连装炮", "110mm二连装炮"], "slot1": "战列主炮", "slot2": "战列主炮", "slot3": "战列主炮", "slot4": "防空" },
+    "notes": "后排炮击，高耐久",
+    "playerInfo": { "owned": true, "level": 93, "fleet": 2, "position": "back", "flagship": false, "fleetStats": { "hp": 5984, "综合性能": 3000 } }
+  },
+  {
+    "id": "prince_henry", "name": "普林斯顿", "nameEn": "USS Princeton",
+    "rarity": "SSR", "shipType": "CVL", "faction": "白鹰", "levelCap": 110,
+    "stats": { "hp": 2800, "fp": 0, "trp": 0, "aa": 160, "air": 340, "asw": 0, "spd": 30, "luck": 85 },
+    "slots": ["舰载机", "舰载机", "防空"],
+    "skills": [
+      { "name": "侦察", "level": 10, "desc": "提升全队命中20%" },
+      { "name": "轻母支援", "level": 10, "desc": "舰载机装填速度提升20%" }
+    ],
+    "equipment": { "recommended": ["F4F野猫", "TBF复仇者", "20mm厄利孔机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "防空" },
+    "notes": "轻母辅助，命中增益",
+    "playerInfo": { "owned": true, "level": 98, "fleet": 1, "position": "back", "flagship": true, "fleetStats": { "hp": 4235, "综合性能": 2842 } }
+  },
+  {
+    "id": "san_hacinto", "name": "圣哈辛托", "nameEn": "USS San Jacinto",
+    "rarity": "SSR", "shipType": "CVL", "faction": "白鹰", "levelCap": 105,
+    "stats": { "hp": 2600, "fp": 0, "trp": 0, "aa": 150, "air": 310, "asw": 0, "spd": 30, "luck": 85 },
+    "slots": ["舰载机", "舰载机", "防空"],
+    "skills": [
+      { "name": "突袭", "level": 10, "desc": "战斗前15秒航空伤害提升30%" },
+      { "name": "航母突击", "level": 10, "desc": "舰载机暴击率提升15%" }
+    ],
+    "equipment": { "recommended": ["F4F野猫", "TBF复仇者", "20mm厄利孔机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "防空" },
+    "notes": "轻母输出，爆发型",
+    "playerInfo": { "owned": true, "level": 89, "fleet": 2, "position": "back", "flagship": false, "fleetStats": { "hp": 4073, "综合性能": 2749 } }
+  },
+  {
+    "id": "atlanta", "name": "亚特兰大", "nameEn": "USS Atlanta",
+    "rarity": "SSR", "shipType": "CL", "faction": "白鹰", "levelCap": 115,
+    "stats": { "hp": 2400, "fp": 180, "trp": 80, "aa": 280, "air": 0, "asw": 0, "spd": 34, "luck": 80 },
+    "slots": ["轻巡主炮", "轻巡主炮", "防空", "鱼雷"],
+    "skills": [
+      { "name": "防空弹幕", "level": 10, "desc": "全队防空属性提升20%" },
+      { "name": "连射", "level": 10, "desc": "炮击时有35%概率额外射击一次" }
+    ],
+    "equipment": { "recommended": ["155mm三连装炮", "155mm三连装炮", "76mm单装炮", "三联装533mm鱼雷"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "防空特化轻巡，对空利器",
+    "playerInfo": { "owned": true, "level": 64, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 2175, "综合性能": 2438 } }
+  },
+  {
+    "id": "west_virginia", "name": "西弗吉尼亚", "nameEn": "USS West Virginia",
+    "rarity": "SSR", "shipType": "BB", "faction": "白鹰", "levelCap": 115,
+    "stats": { "hp": 11500, "fp": 460, "trp": 0, "aa": 150, "air": 0, "asw": 0, "spd": 22, "luck": 80 },
+    "slots": ["战列主炮", "战列主炮", "战列主炮", "防空"],
+    "skills": [
+      { "name": "战列舰之魂", "level": 10, "desc": "炮击伤害提升22%" },
+      { "name": "厚甲", "level": 10, "desc": "自身耐久提升18%" }
+    ],
+    "equipment": { "recommended": ["406mm三连装炮", "406mm三连装炮", "406mm三连装炮", "110mm二连装炮"], "slot1": "战列主炮", "slot2": "战列主炮", "slot3": "战列主炮", "slot4": "防空" },
+    "notes": "后排炮击，高耐久",
+    "playerInfo": { "owned": true, "level": 64, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 4297, "综合性能": 2218 } }
+  },
+  {
+    "id": "gridley", "name": "格里德利", "nameEn": "USS Gridley",
+    "rarity": "R", "shipType": "DD", "faction": "白鹰", "levelCap": 74,
+    "stats": { "hp": 1400, "fp": 85, "trp": 240, "aa": 150, "air": 0, "asw": 90, "spd": 42, "luck": 80 },
+    "slots": ["炮击", "鱼雷", "鱼雷", "防空"],
+    "skills": [{ "name": "鱼雷齐射", "level": 8, "desc": "鱼雷伤害提升25%" }],
+    "equipment": { "recommended": ["127mm单装炮", "五联装533mm鱼雷", "五联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "雷击驱逐，低耗速刷",
+    "playerInfo": { "owned": true, "level": 74, "fleet": null, "position": null, "flagship": false, "fleetStats": { "hp": 1377, "综合性能": 2573 } }
+  },
+  {
+    "id": "shinano", "name": "十纱", "nameEn": "IJN Shinano",
+    "rarity": "SSR", "shipType": "CV", "faction": "重樱", "levelCap": 120,
+    "stats": { "hp": 5800, "fp": 0, "trp": 0, "aa": 140, "air": 520, "asw": 0, "spd": 28, "luck": 75 },
+    "slots": ["舰载机", "舰载机", "舰载机", "防空"],
+    "skills": [
+      { "name": "樱花攻势", "level": 10, "desc": "舰载机伤害提升25%" },
+      { "name": "大型航母", "level": 10, "desc": "舰载机搭载量提升1" }
+    ],
+    "equipment": { "recommended": ["流星", "零战", "TBF复仇者", "25mm三连装机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "舰载机", "slot4": "防空" },
+    "notes": "输出航母，高航空伤害",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "ferry", "name": "冯矢", "nameEn": "KMS Köln",
+    "rarity": "SSR", "shipType": "CL", "faction": "铁血", "levelCap": 110,
+    "stats": { "hp": 2600, "fp": 180, "trp": 150, "aa": 170, "air": 0, "asw": 0, "spd": 34, "luck": 80 },
+    "slots": ["轻巡主炮", "轻巡主炮", "鱼雷", "防空"],
+    "skills": [
+      { "name": "混合打击", "level": 10, "desc": "炮击和雷击伤害同时提升15%" },
+      { "name": "快速装填", "level": 10, "desc": "装填速度提升20%" }
+    ],
+    "equipment": { "recommended": ["150mm单装炮", "150mm单装炮", "四联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "炮雷双修轻巡",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "yujiro", "name": "优玖露", "nameEn": "HMS Eugen",
+    "rarity": "SSR", "shipType": "CL", "faction": "铁血", "levelCap": 110,
+    "stats": { "hp": 2500, "fp": 165, "trp": 120, "aa": 190, "air": 0, "asw": 0, "spd": 34, "luck": 85 },
+    "slots": ["轻巡主炮", "轻巡主炮", "鱼雷", "防空"],
+    "skills": [
+      { "name": "战术指挥", "level": 10, "desc": "前排机动提升20%" },
+      { "name": "集中火力", "level": 10, "desc": "全舰队炮击伤害提升10%" }
+    ],
+    "equipment": { "recommended": ["150mm单装炮", "150mm单装炮", "四联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "辅助轻巡，全队增益",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "london", "name": "伦敦", "nameEn": "HMS London",
+    "rarity": "SSR", "shipType": "CA", "faction": "皇家", "levelCap": 105,
+    "stats": { "hp": 3500, "fp": 230, "trp": 0, "aa": 180, "air": 0, "asw": 0, "spd": 26, "luck": 80 },
+    "slots": ["重巡主炮", "重巡主炮", "防空", "鱼雷"],
+    "skills": [
+      { "name": "重炮轰击", "level": 10, "desc": "对中型敌人伤害提升25%" },
+      { "name": "装甲强化", "level": 10, "desc": "自身耐久提升15%" }
+    ],
+    "equipment": { "recommended": ["203mm三连装炮", "203mm三连装炮", "102mm单装炮", "四联装533mm鱼雷"], "slot1": "重巡主炮", "slot2": "重巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "重炮重巡，对中目标特化",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "ark", "name": "发", "nameEn": "KMS Ark Royal",
+    "rarity": "SSR", "shipType": "DD", "faction": "皇家", "levelCap": 100,
+    "stats": { "hp": 1800, "fp": 100, "trp": 280, "aa": 180, "air": 0, "asw": 120, "spd": 42, "luck": 80 },
+    "slots": ["炮击", "鱼雷", "鱼雷", "防空"],
+    "skills": [
+      { "name": "雷击专精", "level": 10, "desc": "雷击伤害提升30%" },
+      { "name": "快速脱离", "level": 10, "desc": "机动提升25%" }
+    ],
+    "equipment": { "recommended": ["120mm单装炮", "五联装533mm鱼雷", "五联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "雷击驱逐，高机动",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "kazan", "name": "喀山", "nameEn": "KMZ Kazan",
+    "rarity": "SSR", "shipType": "DD", "faction": "北方联合", "levelCap": 95,
+    "stats": { "hp": 1700, "fp": 110, "trp": 260, "aa": 160, "air": 0, "asw": 130, "spd": 40, "luck": 80 },
+    "slots": ["炮击", "鱼雷", "鱼雷", "防空"],
+    "skills": [
+      { "name": "极寒突击", "level": 10, "desc": "对冻结目标伤害提升40%" },
+      { "name": "侦察", "level": 10, "desc": "命中提升20%" }
+    ],
+    "equipment": { "recommended": ["130mm单装炮", "五联装533mm鱼雷", "五联装533mm鱼雷", "25mm三连装机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "北方驱逐，冻结联动",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "linn", "name": "拎", "nameEn": "HMS Lynx",
+    "rarity": "SSR", "shipType": "DD", "faction": "皇家", "levelCap": 95,
+    "stats": { "hp": 1650, "fp": 95, "trp": 270, "aa": 170, "air": 0, "asw": 110, "spd": 44, "luck": 85 },
+    "slots": ["炮击", "鱼雷", "鱼雷", "防空"],
+    "skills": [
+      { "name": "猎豹", "level": 10, "desc": "机动提升30%" },
+      { "name": "快速射击", "level": 10, "desc": "装填速度提升25%" }
+    ],
+    "equipment": { "recommended": ["120mm单装炮", "五联装533mm鱼雷", "五联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "防空" },
+    "notes": "高速驱逐，机动特化",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "fish_mita", "name": "鲟·META", "nameEn": "META Sturgeon",
+    "rarity": "META", "shipType": "SS", "faction": "META", "levelCap": 80,
+    "stats": { "hp": 2200, "fp": 0, "trp": 450, "aa": 0, "air": 0, "asw": 280, "spd": 28, "luck": 90 },
+    "slots": ["鱼雷", "鱼雷", "鱼雷", "水下装备"],
+    "skills": [
+      { "name": "深海潜航", "level": 10, "desc": "潜行时伤害提升50%" },
+      { "name": "雷击齐射", "level": 10, "desc": "鱼雷伤害提升30%" }
+    ],
+    "equipment": { "recommended": ["六联装533mm鱼雷", "六联装533mm鱼雷", "六联装533mm鱼雷", "水下声呐"], "slot1": "鱼雷", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "水下装备" },
+    "notes": "META潜艇，雷击特化",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "dark_mita", "name": "黑暗界·META", "nameEn": "META Darkness",
+    "rarity": "META", "shipType": "CV", "faction": "META", "levelCap": 80,
+    "stats": { "hp": 4500, "fp": 0, "trp": 0, "aa": 180, "air": 480, "asw": 0, "spd": 26, "luck": 70 },
+    "slots": ["舰载机", "舰载机", "舰载机", "防空"],
+    "skills": [
+      { "name": "暗影突袭", "level": 10, "desc": "航空伤害提升35%" },
+      { "name": "黑暗笼罩", "level": 10, "desc": "敌方命中降低20%" }
+    ],
+    "equipment": { "recommended": ["流星", "零战", "TBF复仇者", "25mm三连装机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "舰载机", "slot4": "防空" },
+    "notes": "META航母，暗影特化",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "cleveland", "name": "克利夫兰", "nameEn": "USS Cleveland",
+    "rarity": "R", "shipType": "CL", "faction": "白鹰", "levelCap": 74,
+    "stats": { "hp": 1800, "fp": 135, "trp": 0, "aa": 220, "air": 0, "asw": 0, "spd": 34, "luck": 85 },
+    "slots": ["轻巡主炮", "轻巡主炮", "防空", "鱼雷"],
+    "skills": [{ "name": "连射", "level": 8, "desc": "炮击时有25%概率额外射击一次" }],
+    "equipment": { "recommended": ["152mm三连装炮", "152mm三连装炮", "76mm单装炮", "三联装533mm鱼雷"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "防空", "slot4": "鱼雷" },
+    "notes": "通用轻巡，性价比高",
+    "playerInfo": { "owned": false }
+  },
+  {
+    "id": "birmingham", "name": "伯明翰", "nameEn": "HMS Birmingham",
+    "rarity": "R", "shipType": "CL", "faction": "皇家", "levelCap": 74,
+    "stats": { "hp": 1900, "fp": 125, "trp": 0, "aa": 180, "air": 0, "asw": 0, "spd": 32, "luck": 80 },
+    "slots": ["轻巡主炮", "轻巡主炮", "防空"],
+    "skills": [{ "name": "防空支援", "level": 8, "desc": "全队防空属性提升10%" }],
+    "equipment": { "recommended": ["152mm三连装炮", "152mm三连装炮", "102mm单装炮"], "slot1": "轻巡主炮", "slot2": "轻巡主炮", "slot3": "防空" },
+    "notes": "辅助轻巡，防空增益",
+    "playerInfo": { "owned": false }
+  }
+]

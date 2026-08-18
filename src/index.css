@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-al-bg text-al-text font-sans antialiased; }
+}
+
+@layer components {
+  .al-panel { @apply bg-al-panel rounded-lg border border-al-border; }
+  .al-panel-light { @apply bg-al-panel-light rounded-lg border border-al-border; }
+  .al-btn { @apply px-4 py-2 rounded-md bg-al-panel-light border border-al-border text-al-text-muted hover:text-al-text hover:border-al-gold transition-colors cursor-pointer; }
+  .al-btn-gold { @apply px-4 py-2 rounded-md bg-al-gold text-al-bg font-semibold hover:bg-al-gold-dark transition-colors cursor-pointer; }
+  .al-input { @apply bg-al-bg border border-al-border rounded-md px-4 py-2 text-al-text placeholder-al-text-dim focus:outline-none focus:border-al-gold transition-colors; }
+  .al-badge { @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold; }
+  .al-nav-link { @apply px-3 py-2 rounded-md text-al-text-muted hover:text-al-text hover:bg-al-panel-light transition-colors cursor-pointer; }
+  .al-nav-link-active { @apply text-al-gold bg-al-panel-light; }
+  .al-card { @apply al-panel p-4 hover:border-al-gold/50 transition-colors cursor-pointer; }
+  .al-table-th { @apply text-left text-al-text-muted font-semibold px-4 py-2 border-b border-al-border text-sm; }
+  .al-table-td { @apply px-4 py-2 border-b border-al-border text-sm; }
+  .al-tag { @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium; }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0f1923; }
+::-webkit-scrollbar-thumb { background: #2a3a50; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4a60; }
