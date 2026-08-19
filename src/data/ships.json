@@ -134,13 +134,22 @@
     "id": "west_virginia", "name": "西弗吉尼亚", "nameEn": "USS West Virginia",
     "rarity": "SSR", "shipType": "BB", "faction": "白鹰", "levelCap": 115,
     "stats": { "hp": 11500, "fp": 460, "trp": 0, "aa": 150, "air": 0, "asw": 0, "spd": 22, "luck": 80 },
-    "slots": ["战列主炮", "战列主炮", "战列主炮", "防空"],
+    "slots": ["战列主炮", "副炮", "防空", "设备", "设备"],
     "skills": [
       { "name": "战列舰之魂", "level": 10, "desc": "炮击伤害提升22%" },
       { "name": "厚甲", "level": 10, "desc": "自身耐久提升18%" }
     ],
-    "equipment": { "recommended": ["406mm三连装炮", "406mm三连装炮", "406mm三连装炮", "110mm二连装炮"], "slot1": "战列主炮", "slot2": "战列主炮", "slot3": "战列主炮", "slot4": "防空" },
-    "notes": "后排炮击，高耐久",
+    "equipment": {
+      "recommended": ["双联380mmSKC主炮", "双联装120mm主炮", "装40mm博福斯STAAG", "链式装弹机", "九一式穿甲弹"],
+      "actual": {
+        "slot1_main_gun": "双联380mmSKC主炮",
+        "slot2_secondary_gun": "双联装120mm主炮",
+        "slot3_aa": "装40mm博福斯STAAG",
+        "slot4_device1": "链式装弹机",
+        "slot5_device2": "九一式穿甲弹"
+      }
+    },
+    "notes": "后排炮击，武器效率：主炮115%/副炮200%/防空100%。设备：链式装弹机(装+14炮+3)+九一式穿甲弹(炮+14命+4)",
     "playerInfo": { "owned": true, "level": 65, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 4331, "综合性能": 2230 } }
   },
   {
@@ -157,13 +166,23 @@
     "id": "trafalgar", "name": "特拉法尔加", "nameEn": "HMS Trafalgar",
     "rarity": "ELITE", "shipType": "DD", "faction": "皇家", "levelCap": 120,
     "stats": { "hp": 1950, "fp": 105, "trp": 265, "aa": 190, "air": 0, "asw": 100, "spd": 42, "luck": 90 },
-    "slots": ["炮击", "鱼雷", "防空", "特殊兵装"],
+    "slots": ["炮击", "鱼雷", "防空", "特殊兵装", "设备", "设备"],
     "skills": [
       { "name": "雷击突入", "level": 10, "desc": "首轮雷击伤害提升35%，暴击率提升15%" },
       { "name": "重樱的邀约", "level": 10, "desc": "机动+20，炮击+10" }
     ],
-    "equipment": { "recommended": ["双联装120mm主炮", "五联装533mm鱼雷", "20mm厄利孔机炮", "高性能舵机"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "防空", "slot4": "特殊兵装" },
-    "notes": "皇家重樱联动驱逐，雷击+机动特化",
+    "equipment": {
+      "recommended": ["双联装120mm主炮", "五联装533mm鱼雷", "40mm博福斯海兹梅耶", "雷击特殊兵装", "重樱的邀请函", "高性能舵机"],
+      "actual": {
+        "slot1_gun": "双联装120mm主炮",
+        "slot2_torpedo": "五联装533mm鱼雷",
+        "slot3_aa": "40mm博福斯海兹梅耶",
+        "slot4_special": "雷击13/命中4",
+        "slot5_device1": "重樱的邀请函",
+        "slot6_device2": "高性能舵机"
+      }
+    },
+    "notes": "皇家重樱联动驱逐，武器效率：主炮110%/鱼雷115%/防空155%。设备：重樱邀请函(炮+5机+6)+高性能舵机(机+16耐+24)",
     "playerInfo": { "owned": true, "level": 99, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 1359, "综合性能": 2778 } }
   },
   {
