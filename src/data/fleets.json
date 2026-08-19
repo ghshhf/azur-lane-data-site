@@ -3,41 +3,41 @@
     "id": "fleet_1_mixed",
     "name": "我的第一舰队 · 航战混合队",
     "category": "user",
-    "front": ["baltimore", "atlanta", "bluemarton"],
-    "back": ["prince_henry", "unicorn_mod", "west_virginia"],
-    "flagship": "prince_henry",
+    "front": ["atlanta", "trafalgar", "gridley"],
+    "back": ["unicorn_mod", "prince_henry", "west_virginia"],
+    "flagship": "unicorn_mod",
     "recommendedLevel": 100,
-    "aggregateStats": { "fp": 1045, "trp": 153, "aa": 1772, "air": 992, "control": 988, "cost": 62 },
-    "description": "用户实际编队：航战混合队，后排普林斯顿旗舰+独角兽.改奶航+西弗吉尼亚战列舰，前排巴尔的摩重巡+亚特兰大防空轻巡+布莱默顿辅助重巡",
+    "aggregateStats": { "fp": 584, "trp": 788, "aa": 1592, "air": 994, "control": 990, "cost": 57 },
+    "description": "用户实际编队：航战混合队，独角兽.改旗舰+普林斯顿轻母+西弗吉尼亚战列舰，前排亚特兰大防空轻巡+特拉法尔加新驱逐+格里德利雷击驱逐",
     "equipmentTips": {
-      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
       "unicorn_mod": "TBF复仇者 + F4F野猫 + 20mm厄利孔机炮",
+      "prince_henry": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
       "west_virginia": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
-      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
       "atlanta": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
-      "bluemarton": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷"
+      "trafalgar": "双联装120mm主炮 + 五联装533mm鱼雷 + 20mm厄利孔机炮 + 高性能舵机",
+      "gridley": "127mm单装炮 + 五联装533mm鱼雷x2 + 20mm厄利孔机炮"
     },
-    "notes": "注意：亚特兰大(Lv.64)和西弗吉尼亚(Lv.64)等级偏低，需要优先练级。综合性能：普林斯顿2842 / 独角兽4210 / 西弗吉尼亚2218 / 巴尔的摩3257 / 亚特兰大2438 / 布莱默顿2597"
+    "notes": "2025-03更新：独角兽.改升为旗舰，巴尔的摩/布莱默顿调至第二舰队，新入特拉法尔加(ELITE DD Lv.99)和格里德利(Lv.74)。注意：亚特兰大(Lv.64)、西弗吉尼亚(Lv.65)、格里德利(Lv.74)等级偏低需练级。综合性能：独角兽4212 / 普林斯顿2842 / 西弗吉尼亚2230 / 亚特兰大2438 / 特拉法尔加2778 / 格里德利2573"
   },
   {
     "id": "fleet_2_gunnery",
     "name": "我的第二舰队 · 炮击队",
     "category": "user",
-    "front": ["st_louis", "bluemarton", "laffey_ii"],
+    "front": ["baltimore", "st_louis", "laffey_ii"],
     "back": ["alabama", "arizona", "san_hacinto"],
     "flagship": "alabama",
     "recommendedLevel": 100,
-    "aggregateStats": { "fp": 1670, "trp": 362, "aa": 1803, "air": 342, "control": 260, "cost": 74 },
-    "description": "用户实际编队：纯炮击队，阿拉巴马旗舰+亚利桑那+圣哈辛托CVL，前排圣路易斯+布莱默顿+拉菲II，炮击面板1670为全队核心输出",
+    "aggregateStats": { "fp": 1915, "trp": 477, "aa": 2003, "air": 342, "control": 260, "cost": 80 },
+    "description": "用户实际编队：纯炮击队，阿拉巴马旗舰+亚利桑那+圣哈辛托CVL，前排巴尔的摩重巡+圣路易斯轻巡+拉菲II驱逐，炮击面板1915为全队核心输出",
     "equipmentTips": {
       "alabama": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
       "arizona": "406mm三连装炮x3 + 110mm二连装炮 + 穿甲弹",
       "san_hacinto": "F4F野猫 + TBF复仇者 + 20mm厄利孔机炮",
+      "baltimore": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
       "st_louis": "155mm三连装炮x2 + 76mm单装炮 + 三联装533mm鱼雷",
-      "bluemarton": "203mm三连装炮x2 + 110mm二连装炮 + 五联装533mm鱼雷",
       "laffey_ii": "130mm单装炮 + 五联装533mm鱼雷x2 + 25mm三连装机炮"
     },
-    "notes": "已优化：旗舰换阿拉巴马(3600综合性能最高)，格里德利(Lv.74)换为布莱默顿(CA肉盾)。综合性能：阿拉巴马3600 / 亚利桑那3000 / 圣哈辛托2749 / 圣路易斯2695 / 布莱默顿2597 / 拉菲II3726"
+    "notes": "2025-03更新：巴尔的摩从第一舰队调入替换布莱默顿。综合性能：阿拉巴马3600 / 亚利桑那3000 / 圣哈辛托2749 / 巴尔的摩3257 / 圣路易斯2695 / 拉菲II3726"
   },
   {
     "id": "boss_auto_v1",

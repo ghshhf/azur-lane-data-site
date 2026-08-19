@@ -24,7 +24,7 @@
     ],
     "equipment": { "recommended": ["TBF复仇者", "F4F野猫", "20mm厄利孔机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "防空" },
     "notes": "辅助奶航，前排回血核心",
-    "playerInfo": { "owned": true, "level": 125, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 5805, "综合性能": 4210 } }
+    "playerInfo": { "owned": true, "level": 125, "fleet": 1, "position": "back", "flagship": true, "fleetStats": { "hp": 5805, "综合性能": 4212 } }
   },
   {
     "id": "baltimore", "name": "巴尔的摩", "nameEn": "USS Baltimore",
@@ -37,7 +37,7 @@
     ],
     "equipment": { "recommended": ["203mm三连装炮", "203mm三连装炮", "110mm二连装炮", "五联装533mm鱼雷"], "slot1": "重巡主炮", "slot2": "重巡主炮", "slot3": "防空", "slot4": "鱼雷" },
     "notes": "重巡核心，高炮击输出",
-    "playerInfo": { "owned": true, "level": 124, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 5351, "综合性能": 3257 } }
+    "playerInfo": { "owned": true, "level": 124, "fleet": 2, "position": "front", "flagship": false, "fleetStats": { "hp": 5351, "综合性能": 3257 } }
   },
   {
     "id": "alabama", "name": "阿拉巴马", "nameEn": "USS Alabama",
@@ -76,7 +76,7 @@
     ],
     "equipment": { "recommended": ["203mm三连装炮", "203mm三连装炮", "110mm二连装炮", "五联装533mm鱼雷"], "slot1": "重巡主炮", "slot2": "重巡主炮", "slot3": "防空", "slot4": "鱼雷" },
     "notes": "辅助重巡，提供回血支援",
-    "playerInfo": { "owned": true, "level": 100, "fleet": "both", "position": "front", "flagship": false, "fleetStats": { "hp": 4552, "综合性能": 2597 } }
+    "playerInfo": { "owned": true, "level": 100, "fleet": 2, "position": "front", "flagship": false, "fleetStats": { "hp": 4552, "综合性能": 2597 } }
   },
   {
     "id": "arizona", "name": "亚利桑那", "nameEn": "USS Arizona",
@@ -102,7 +102,7 @@
     ],
     "equipment": { "recommended": ["F4F野猫", "TBF复仇者", "20mm厄利孔机炮"], "slot1": "舰载机", "slot2": "舰载机", "slot3": "防空" },
     "notes": "轻母辅助，命中增益",
-    "playerInfo": { "owned": true, "level": 98, "fleet": 1, "position": "back", "flagship": true, "fleetStats": { "hp": 4235, "综合性能": 2842 } }
+    "playerInfo": { "owned": true, "level": 98, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 4235, "综合性能": 2842 } }
   },
   {
     "id": "san_hacinto", "name": "圣哈辛托", "nameEn": "USS San Jacinto",
@@ -141,7 +141,7 @@
     ],
     "equipment": { "recommended": ["406mm三连装炮", "406mm三连装炮", "406mm三连装炮", "110mm二连装炮"], "slot1": "战列主炮", "slot2": "战列主炮", "slot3": "战列主炮", "slot4": "防空" },
     "notes": "后排炮击，高耐久",
-    "playerInfo": { "owned": true, "level": 64, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 4297, "综合性能": 2218 } }
+    "playerInfo": { "owned": true, "level": 65, "fleet": 1, "position": "back", "flagship": false, "fleetStats": { "hp": 4331, "综合性能": 2230 } }
   },
   {
     "id": "gridley", "name": "格里德利", "nameEn": "USS Gridley",
@@ -151,7 +151,20 @@
     "skills": [{ "name": "鱼雷齐射", "level": 8, "desc": "鱼雷伤害提升25%" }],
     "equipment": { "recommended": ["127mm单装炮", "五联装533mm鱼雷", "五联装533mm鱼雷", "20mm厄利孔机炮"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "鱼雷", "slot4": "防空" },
     "notes": "雷击驱逐，低耗速刷",
-    "playerInfo": { "owned": true, "level": 74, "fleet": null, "position": null, "flagship": false, "fleetStats": { "hp": 1377, "综合性能": 2573 } }
+    "playerInfo": { "owned": true, "level": 74, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 1377, "综合性能": 2573 } }
+  },
+  {
+    "id": "trafalgar", "name": "特拉法尔加", "nameEn": "HMS Trafalgar",
+    "rarity": "ELITE", "shipType": "DD", "faction": "皇家", "levelCap": 120,
+    "stats": { "hp": 1950, "fp": 105, "trp": 265, "aa": 190, "air": 0, "asw": 100, "spd": 42, "luck": 90 },
+    "slots": ["炮击", "鱼雷", "防空", "特殊兵装"],
+    "skills": [
+      { "name": "雷击突入", "level": 10, "desc": "首轮雷击伤害提升35%，暴击率提升15%" },
+      { "name": "重樱的邀约", "level": 10, "desc": "机动+20，炮击+10" }
+    ],
+    "equipment": { "recommended": ["双联装120mm主炮", "五联装533mm鱼雷", "20mm厄利孔机炮", "高性能舵机"], "slot1": "炮击", "slot2": "鱼雷", "slot3": "防空", "slot4": "特殊兵装" },
+    "notes": "皇家重樱联动驱逐，雷击+机动特化",
+    "playerInfo": { "owned": true, "level": 99, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 1359, "综合性能": 2778 } }
   },
   {
     "id": "shinano", "name": "十纱", "nameEn": "IJN Shinano",

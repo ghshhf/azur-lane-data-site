@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom'
 import { Anchor, Ship, Wrench, Users, MapPin, ArrowRight, TrendingUp, Star, Flag, Swords } from 'lucide-react'
 import fleets from '../data/fleets.json'
 import ships from '../data/ships.json'
+import equipment from '../data/equipment.json'
 
 const userFleets = fleets.filter(f => f.category === 'user')
 const referenceFleets = fleets.filter(f => f.category !== 'user')
 
 const ownedShips = ships.filter(s => s.playerInfo?.owned)
+const ownedEquipment = equipment.filter(e => e.playerOwned)
 const lowLevelShips = ownedShips.filter(s => (s.playerInfo?.level || 0) < 90)
 
 const quickLinks = [
@@ -19,7 +21,7 @@ const quickLinks = [
 const stats = [
   { label: '我的舰娘', value: ownedShips.length, icon: Ship },
   { label: '总收录', value: ships.length, icon: Ship },
-  { label: '我的装备', value: '16', icon: Wrench },
+  { label: '我的装备', value: ownedEquipment.length, icon: Wrench },
   { label: '我的舰队', value: userFleets.length, icon: Users },
 ]
 

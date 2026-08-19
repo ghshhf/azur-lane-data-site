@@ -22,5 +22,7 @@
   { "id": "aircraft_ryusei", "name": "流星", "rarity": "SSR", "type": "舰载机", "stats": { "air": 35, "dps": 58.0 }, "fitShipTypes": ["CV"], "source": ["掉落：10-2", "科研"], "rating": 9.5, "description": "顶级鱼雷机", "playerOwned": false },
   { "id": "shell_ap", "name": "穿甲弹", "rarity": "SSR", "type": "弹药", "stats": { "fp": 15, "dps": 10.0 }, "fitShipTypes": ["BB", "CA"], "source": ["科研", "商店"], "rating": 9.0, "description": "穿甲弹，对重甲目标增伤", "playerOwned": true },
   { "id": "shell_he", "name": "高爆弹", "rarity": "SSR", "type": "弹药", "stats": { "fp": 12, "dps": 12.0 }, "fitShipTypes": ["BB", "CA", "CL"], "source": ["科研", "商店"], "rating": 8.5, "description": "高爆弹，对轻甲目标增伤", "playerOwned": false },
-  { "id": "sonar", "name": "水下声呐", "rarity": "SSR", "type": "水下装备", "stats": { "asw": 30, "dps": 0 }, "fitShipTypes": ["SS"], "source": ["科研"], "rating": 9.0, "description": "潜艇水下装备，增强反潜能力", "playerOwned": false }
+  { "id": "sonar", "name": "水下声呐", "rarity": "SSR", "type": "水下装备", "stats": { "asw": 30, "dps": 0 }, "fitShipTypes": ["SS"], "source": ["科研"], "rating": 9.0, "description": "潜艇水下装备，增强反潜能力", "playerOwned": false },
+  { "id": "gun_120mm_dual", "name": "双联装120mm主炮", "rarity": "SR", "type": "炮击", "stats": { "fp": 25, "dps": 18.0 }, "fitShipTypes": ["DD"], "source": ["掉落：8-3", "科研"], "rating": 8.2, "description": "英式驱逐主炮，4x4炮弹，武器效率110%", "playerOwned": true },
+  { "id": "rudder_perf", "name": "高性能舵机", "rarity": "SSR", "type": "特殊兵装", "stats": { "spd": 16, "hp_bonus": 24 }, "fitShipTypes": ["DD", "CL"], "source": ["科研", "活动"], "rating": 9.0, "description": "机动+16，耐久+24，驱逐/轻巡通用特殊装备", "playerOwned": true }
 ]
