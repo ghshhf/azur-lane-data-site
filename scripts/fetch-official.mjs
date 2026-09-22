@@ -5,7 +5,7 @@
 // 丢掉全部副炮槽；西弗吉尼亚多出 2 个游戏内并不存在的「设备」槽。槽位数错 → 配装求解器与战力合成全错。
 //
 // 官方档案同时提供了三件本站缺的东西：
-//   ① slots[].max            —— 该类型装备的槽位数（全库分布 1–4，统一按槽数处理）
+//   ① slots[].max            —— 水面舰=该类型槽位数；航母=载机容量（槽数看 slots 元素条数，已用 wiki 逐舰核对）
 //   ② min/max/kaiEfficiency  —— 未突破 / 满突破 / 改造后的武器效率
 //   ③ stats.{base,100,120,125}[Retrofit] —— 分档面板（本站 stats 是按舰种拍的概数）
 //
@@ -187,9 +187,13 @@ for (const site of siteShips) {
   }
 
   // ① 槽位 + 效率
-  // AzurAPI slots[].max 即「该类型装备的槽位数」：全库 max 分布为 1–4（无载机量级大数），
-  // 战列/航母/驱逐均如此（阿拉巴马 BB Guns=max3=3 主炮槽，企业 Fighters=max3=3 战斗机槽）。
-  // 故统一 count = max，按官方类型去重展开即可，无需按舰种特判。
+  // AzurAPI slots[].max 语义按舰种不同（已用官方 wiki 装备槽表逐舰核对）：
+  //   - 水面舰（BB/CL/CA/DD/SS）：每类型只列 1 条，max = 该类型槽数（阿拉巴马 BB Guns max3 = 3 主炮槽）
+  //   - 航母（CV/CVL）：每条 slots 元素 = 1 个装备槽，max 是载机容量（忽略）
+  //     普林斯顿/皇家方舟/信浓/独角兽均如此。例外：舰队航母（如企业 3+3+2=8 槽）仍用 max 计槽，
+  //     但本站舰队不含此类，故航母统一按「元素数 = 槽数」。新增舰队航母时需回 wiki 复核。
+  const isCarrier = ['Aircraft Carrier', 'Light Carrier'].includes(hit.hullType)
+
   const rawMapped = []
   for (const sl of hit.slots ?? []) {
     const mapped = resolveSlotType(sl.type)
@@ -200,23 +204,42 @@ for (const site of siteShips) {
     rawMapped.push({ sl, mapped })
   }
 
-  const seen = new Set()
   const slots = []
-  for (const { sl, mapped } of rawMapped) {
-    if (seen.has(sl.type)) continue
-    seen.add(sl.type)
-    slots.push({
-      official: sl.type,
-      label: mapped.label,
-      types: mapped.types,
-      checkFit: mapped.fit,
-      count: Number(sl.max) || 1,
-      eff: {
-        min: sl.minEfficiency ?? null,
-        max: sl.maxEfficiency ?? null,
-        kai: sl.kaiEfficiency ?? null,
-      },
-    })
+  if (isCarrier) {
+    // 航母：每条元素 = 1 槽，count 固定 1，max 不参与计槽
+    for (const { sl, mapped } of rawMapped) {
+      slots.push({
+        official: sl.type,
+        label: mapped.label,
+        types: mapped.types,
+        checkFit: mapped.fit,
+        count: 1,
+        eff: {
+          min: sl.minEfficiency ?? null,
+          max: sl.maxEfficiency ?? null,
+          kai: sl.kaiEfficiency ?? null,
+        },
+      })
+    }
+  } else {
+    // 水面舰：按类型去重，count = max
+    const seen = new Set()
+    for (const { sl, mapped } of rawMapped) {
+      if (seen.has(sl.type)) continue
+      seen.add(sl.type)
+      slots.push({
+        official: sl.type,
+        label: mapped.label,
+        types: mapped.types,
+        checkFit: mapped.fit,
+        count: Number(sl.max) || 1,
+        eff: {
+          min: sl.minEfficiency ?? null,
+          max: sl.maxEfficiency ?? null,
+          kai: sl.kaiEfficiency ?? null,
+        },
+      })
+    }
   }
 
   if (slots.length) {
@@ -278,7 +301,7 @@ writeFileSync(
     {
       _meta: {
         ...meta,
-        note: '槽位与效率来自游戏档案。slots[].max 即该类型槽位数（全库 1–4）；效率三档：min=未突破、max=满突破、kai=改造后。',
+        note: '槽位与效率来自游戏档案。水面舰 slots[].max=槽数；航母每条 slots 元素=1 槽、max 为载机容量（已用 wiki 装备槽表逐舰核对）。效率三档：min=未突破、max=满突破、kai=改造后。',
       },
       ships: slotsOut,
     },

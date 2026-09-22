@@ -5,7 +5,7 @@
     "endpoint": "dist/ships.json",
     "fetchedAt": "2026-09-22",
     "matched": "18/24",
-    "note": "槽位与效率来自游戏档案。slots[].max 即该类型槽位数（全库 1–4）；效率三档：min=未突破、max=满突破、kai=改造后。"
+    "note": "槽位与效率来自游戏档案。水面舰 slots[].max=槽数；航母每条 slots 元素=1 槽、max 为载机容量（已用 wiki 装备槽表逐舰核对）。效率三档：min=未突破、max=满突破、kai=改造后。"
   },
   "ships": {
     "laffey_ii": {
@@ -74,7 +74,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
           "eff": {
             "min": 115,
             "max": 130,
@@ -88,7 +88,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
           "eff": {
             "min": 115,
             "max": 130,
@@ -385,7 +385,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
           "eff": {
             "min": 110,
             "max": 125,
@@ -399,7 +399,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
           "eff": {
             "min": 140,
             "max": 155,
@@ -591,7 +591,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 2,
+          "count": 1,
           "eff": {
             "min": 120,
             "max": 125,
@@ -605,7 +605,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
           "eff": {
             "min": 120,
             "max": 130,
@@ -619,7 +619,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 4,
+          "count": 1,
           "eff": {
             "min": 125,
             "max": 140,
@@ -797,7 +797,21 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 3,
+          "count": 1,
+          "eff": {
+            "min": 125,
+            "max": 140,
+            "kai": 143
+          }
+        },
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 1,
           "eff": {
             "min": 125,
             "max": 140,
@@ -811,7 +825,7 @@
             "舰载机"
           ],
           "checkFit": true,
-          "count": 2,
+          "count": 1,
           "eff": {
             "min": 80,
             "max": 80,
