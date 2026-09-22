@@ -3,16 +3,31 @@ import equipment from '../data/equipment.json'
 import EquipmentCard from '../components/EquipmentCard.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 import FilterPanel from '../components/FilterPanel.jsx'
+import { RARITY_LIST } from '../utils/rarity.jsx'
+import { uniqueValues } from '../utils/options.js'
+import { useDocumentTitle } from '../utils/useDocumentTitle.js'
 
-const EQUIP_TYPES = ['炮击', '鱼雷', '防空', '舰载机', '弹药', '水下装备']
+// 类型顺序仅作展示偏好；数据里出现的其它类型会自动追加，不会被漏掉
+const TYPE_ORDER = ['炮击', '鱼雷', '防空', '舰载机', '弹药', '设备', '特殊兵装', '水下装备']
+
+const filterGroups = [
+  { key: 'type', label: '装备类型', options: uniqueValues(equipment, 'type', TYPE_ORDER) },
+  { key: 'rarity', label: '稀有度', options: uniqueValues(equipment, 'rarity', RARITY_LIST) },
+]
 
 export default function Equipment() {
+  useDocumentTitle('装备图鉴')
   const [search, setSearch] = useState('')
   const [filters, setFilters] = useState({ rarity: [], type: [] })
 
   const filtered = useMemo(() => {
+    const keyword = search.trim().toLowerCase()
     return equipment.filter(eq => {
-      if (search && !eq.name.includes(search)) return false
+      if (keyword) {
+        const haystack = [eq.name, eq.type, ...(eq.source || []), ...(eq.fitShipTypes || [])]
+          .filter(Boolean).map(v => String(v).toLowerCase())
+        if (!haystack.some(v => v.includes(keyword))) return false
+      }
       if (filters.rarity.length > 0 && !filters.rarity.includes(eq.rarity)) return false
       if (filters.type.length > 0 && !filters.type.includes(eq.type)) return false
       return true
@@ -22,25 +37,11 @@ export default function Equipment() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-al-text mb-4">装备图鉴</h1>
-      <div className="mb-4"><SearchBar value={search} onChange={setSearch} placeholder="搜索装备名称..." /></div>
-      <div className="mb-4">
-        <div className="al-panel p-4 mb-3">
-          <div className="text-xs text-al-text-muted mb-2 font-medium">装备类型</div>
-          <div className="flex flex-wrap gap-1.5">
-            {EQUIP_TYPES.map(t => {
-              const active = filters.type?.includes(t)
-              return (
-                <button key={t} onClick={() => { const cur = filters.type || []; setFilters({ ...filters, type: active ? cur.filter(v => v !== t) : [...cur, t] }) }}
-                  className={`px-2 py-1 rounded text-xs border transition-colors cursor-pointer ${active ? 'bg-al-gold text-al-bg border-al-gold' : 'bg-al-panel-light text-al-text-muted border-al-border hover:border-al-gold/50'}`}>
-                  {t}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-        <FilterPanel filters={{ rarity: filters.rarity }} onFilterChange={(f) => setFilters({ ...filters, rarity: f.rarity })} filterConfig={{ showRarity: true }} />
+      <div className="mb-4"><SearchBar value={search} onChange={setSearch} placeholder="搜索装备名称 / 类型 / 获取途径..." /></div>
+      <div className="mb-4"><FilterPanel filters={filters} onFilterChange={setFilters} groups={filterGroups} /></div>
+      <div className="text-sm text-al-text-muted mb-3">
+        共 {filtered.length} / {equipment.length} 件装备（已持有 {equipment.filter(e => e.playerOwned).length} 件）
       </div>
-      <div className="text-sm text-al-text-muted mb-3">共 {filtered.length} / {equipment.length} 件装备</div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {filtered.map(eq => <EquipmentCard key={eq.id} equip={eq} />)}
       </div>

@@ -1,17 +1,16 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { RarityBadge } from '../utils/rarity.jsx'
+import { EQUIP_STAT_LABELS, labelOf } from '../constants/display.jsx'
 
 const typeColor = {
   '炮击': 'text-r-r', '鱼雷': 'text-r-sr', '防空': 'text-r-ssr',
   '舰载机': 'text-r-elite', '弹药': 'text-r-meta', '水下装备': 'text-t-ss',
+  '设备': 'text-t-cl', '特殊兵装': 'text-t-cvl',
 }
 
-const statLabel = { fp: '炮击', trp: '雷击', aa: '防空', air: '航空', dps: 'DPS' }
-
 export default function EquipmentCard({ equip }) {
-  const navigate = useNavigate()
   return (
-    <div className="al-card" onClick={() => navigate(`/equipment/${equip.id}`)}>
+    <Link to={`/equipment/${equip.id}`} className="al-card block" aria-label={`${equip.name} 详情`}>
       <div className="flex items-start justify-between mb-2">
         <div>
           <h3 className="font-semibold text-al-text">{equip.name}</h3>
@@ -22,7 +21,7 @@ export default function EquipmentCard({ equip }) {
       <div className="grid grid-cols-2 gap-2 text-xs mb-2">
         {equip.stats && Object.entries(equip.stats).map(([key, val]) => (
           <div key={key} className="flex flex-col">
-            <span className="text-al-text-dim">{statLabel[key] || key}</span>
+            <span className="text-al-text-dim">{labelOf(EQUIP_STAT_LABELS, key)}</span>
             <span className="text-al-text font-medium">{val}</span>
           </div>
         ))}
@@ -31,6 +30,11 @@ export default function EquipmentCard({ equip }) {
         <span>评分: {equip.rating}</span>
         <span>适配: {equip.fitShipTypes?.join('/')}</span>
       </div>
-    </div>
+      {equip.playerOwned && (
+        <div className="mt-1.5 text-xs text-al-gold">
+          已持有{equip.count ? ` ×${equip.count}` : ''}{equip.enhanced ? ` · 强化+${equip.enhanced}` : ''}
+        </div>
+      )}
+    </Link>
   )
 }

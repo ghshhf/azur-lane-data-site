@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { Anchor, Ship, Wrench, Users, MapPin } from 'lucide-react'
+import meta from '../data/meta.json'
 
 const navItems = [
   { to: '/', label: '首页', icon: Anchor, end: true },
@@ -39,7 +40,10 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="max-w-7xl mx-auto px-4 py-6 text-center text-al-text-dim text-sm border-t border-al-border mt-8">
-        碧蓝航线数据查询站 · 纯数据驱动 · AI 友好
+        <p>碧蓝航线数据查询站 · 纯数据驱动</p>
+        <p className="mt-1 text-xs">
+          数据快照 {meta.updatedAt}（{meta.scope}） · 游戏数据版权归发行商所有
+        </p>
       </footer>
     </div>
   )

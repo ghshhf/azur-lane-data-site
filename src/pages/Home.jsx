@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom'
-import { Anchor, Ship, Wrench, Users, MapPin, ArrowRight, TrendingUp, Star, Flag, Swords } from 'lucide-react'
+import { Anchor, Ship, Wrench, Users, MapPin, ArrowRight, TrendingUp, Flag } from 'lucide-react'
 import fleets from '../data/fleets.json'
 import ships from '../data/ships.json'
 import equipment from '../data/equipment.json'
+import meta from '../data/meta.json'
+import { FLEET_STAT_LABELS, labelOf } from '../constants/display.jsx'
+import { useDocumentTitle } from '../utils/useDocumentTitle.js'
 
 const userFleets = fleets.filter(f => f.category === 'user')
 const referenceFleets = fleets.filter(f => f.category !== 'user')
 
 const ownedShips = ships.filter(s => s.playerInfo?.owned)
-const ownedEquipment = equipment.filter(e => e.playerOwned)
+// 按 id 去重再计数：同一件装备出现两条记录时，记录数会高估持有量
+const ownedEquipmentCount = new Set(equipment.filter(e => e.playerOwned).map(e => e.id)).size
+const totalShips = new Set(ships.map(s => s.id)).size
+const totalEquipment = new Set(equipment.map(e => e.id)).size
 const lowLevelShips = ownedShips.filter(s => (s.playerInfo?.level || 0) < 90)
 
 const quickLinks = [
@@ -20,12 +26,13 @@ const quickLinks = [
 
 const stats = [
   { label: '我的舰娘', value: ownedShips.length, icon: Ship },
-  { label: '总收录', value: ships.length, icon: Ship },
-  { label: '我的装备', value: ownedEquipment.length, icon: Wrench },
-  { label: '我的舰队', value: userFleets.length, icon: Users },
+  { label: '舰娘收录', value: totalShips, icon: Ship },
+  { label: '我的装备', value: ownedEquipmentCount, icon: Wrench },
+  { label: '装备收录', value: totalEquipment, icon: Wrench },
 ]
 
 export default function Home() {
+  useDocumentTitle('')
   return (
     <div>
       <div className="al-panel p-8 mb-6">
@@ -33,7 +40,10 @@ export default function Home() {
           <Anchor className="w-10 h-10 text-al-gold" />
           <h1 className="text-3xl font-bold text-al-text">碧蓝航线数据查询站</h1>
         </div>
-        <p className="text-al-text-muted mb-4">我的数据 · 纯数据驱动 · AI 友好</p>
+        <p className="text-al-text-muted mb-2">我的数据 · 纯数据驱动 · AI 友好</p>
+        <p className="text-xs text-al-text-dim mb-4">
+          数据快照 {meta.updatedAt} · {meta.scope} · 来源：{meta.source}
+        </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {stats.map(({ label, value, icon: Icon }) => (
             <div key={label} className="al-panel-light p-3 text-center">
@@ -59,7 +69,7 @@ export default function Home() {
                   <div className="grid grid-cols-3 gap-2 mb-2 text-xs">
                     {Object.entries(fleet.aggregateStats).map(([key, val]) => (
                       <div key={key} className="flex items-center gap-1">
-                        <span className="text-al-text-dim">{key === 'fp' ? '炮击' : key === 'trp' ? '雷击' : key === 'aa' ? '防空' : key === 'air' ? '航空' : key === 'control' ? '制空' : '消耗'}</span>
+                        <span className="text-al-text-dim">{labelOf(FLEET_STAT_LABELS, key)}</span>
                         <span className="font-bold text-al-text">{val}</span>
                       </div>
                     ))}
@@ -74,11 +84,11 @@ export default function Home() {
 
       {lowLevelShips.length > 0 && (
         <div className="al-panel p-4 mb-6 border-l-4 border-l-yellow-500">
-          <h2 className="text-yellow-500 font-semibold mb-3 text-sm">⚠ 待练级舰娘（低于Lv.90）</h2>
+          <h2 className="text-yellow-500 font-semibold mb-3 text-sm">待练级舰娘（低于 Lv.90）：{lowLevelShips.length} 艘</h2>
           <div className="flex flex-wrap gap-2">
             {lowLevelShips.map(s => (
               <Link key={s.id} to={`/ships/${s.id}`} className="al-tag bg-yellow-500/20 text-yellow-500 text-xs hover:bg-yellow-500/30">
-                {s.name} Lv.{s.playerInfo?.level} → 目标Lv.90+
+                {s.name} Lv.{s.playerInfo?.level} → 目标 Lv.90+
               </Link>
             ))}
           </div>
@@ -95,7 +105,7 @@ export default function Home() {
         ))}
       </div>
 
-      <h2 className="text-al-gold font-semibold mb-3 flex items-center gap-2"><TrendingUp className="w-4 h-4" /> 推荐阵容（基于我的舰娘）</h2>
+      <h2 className="text-al-gold font-semibold mb-3 flex items-center gap-2"><TrendingUp className="w-4 h-4" /> 参考阵容</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {referenceFleets.slice(0, 4).map(f => (
           <Link key={f.id} to={`/fleets/${f.id}`} className="al-card">

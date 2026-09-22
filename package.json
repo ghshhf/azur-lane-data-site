@@ -1,12 +1,15 @@
 {
   "name": "azur-lane-data-site",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "validate": "node scripts/validate-data.mjs",
+    "prebuild": "node scripts/validate-data.mjs",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:smoke": "vite build --ssr scripts/smoke/entry.jsx --outDir .smoke --emptyOutDir --logLevel warn && node scripts/smoke.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.441.0",

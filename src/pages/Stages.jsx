@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import stages from '../data/stages.json'
 import { Package, Users, ChevronRight } from 'lucide-react'
+import { useDocumentTitle } from '../utils/useDocumentTitle.js'
 
 const difficultyColors = { '普通': 'text-r-r', '困难': 'text-r-elite', '极难': 'text-r-meta', 'SP': 'text-r-sr' }
 
 export default function Stages() {
+  useDocumentTitle('关卡活动')
   const [chapterFilter, setChapterFilter] = useState([])
   const chapters = [...new Set(stages.map(s => s.chapter))].sort((a, b) => a - b)
 
@@ -34,6 +36,11 @@ export default function Stages() {
                 </button>
               )
             })}
+            {chapterFilter.length > 0 && (
+              <button onClick={() => setChapterFilter([])} className="px-2 py-1 text-xs text-al-text-dim hover:text-al-gold cursor-pointer transition-colors">
+                清空
+              </button>
+            )}
           </div>
         </div>
       </div>
