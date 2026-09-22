@@ -1,26 +1,42 @@
-import slotRules from '../data/slotRules.json'
+import shipPanelsData from '../data/shipPanels.json'
 import { EQUIP_STAT_LABELS, SHIP_STAT_LABELS } from '../constants/display.jsx'
+import { slotLayout, slotSource, slotEfficiency, canEquip, equipShipType, shipTypeMismatch } from './slots.js'
+
+// 槽位口径的实现在 slots.js（纯数据逻辑，数据校验脚本共用同一份）
+export { slotLayout, slotSource, slotEfficiency, canEquip, equipShipType, shipTypeMismatch }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 配装战力口径 v1
+// 配装战力口径 v2
 //
-// 这不是游戏内数值，是自建口径。原因：游戏没有公布「战力」公式，官方面板也不
-// 直接给出战力。本模型只做两件确定性的事：
-//   ① 面板合成：舰娘基准面板 + Σ(装备加成 × 槽位武器效率 × 强化系数)
-//   ② 三轴归一 + 公开权重 → 0–1000 的配装评分
-// 第①步是纯算术、可逐件核验；第②步的权重与锚点是显式参数，改了立刻生效。
-// 用途：同一艘船比较不同配装。不同舰种之间横向比较无意义（锚点按单舰面板量级设定）。
+// 数据来源分两层，务必分清：
+//   ① 舰娘面板、槽位、槽位武器效率 —— 取自官方档案（shipPanels/shipSlots，见
+//      scripts/fetch-official.mjs）。这部分是游戏内数值，不含自建假设。
+//   ② 三轴归一权重、锚点、分档线 —— 自建。游戏不公布「战力」公式，这部分只能自定。
+//
+// 两件确定性的事：
+//   a) 面板合成 = 舰娘基准面板 + Σ(装备属性 × 槽位武器效率 × 强化系数)
+//   b) 三轴归一 + 公开权重 → 0–1000 评分
+// a 是纯算术、可逐件回算；b 的参数全在 COMBAT_MODEL 里，改了立刻生效。
+//
+// 用途：同一艘船比较不同配装。不同舰种横向比分数无意义（锚点按单舰面板量级标定）。
+//
+// v2 修正的三处口径错误：
+//   - 槽位：此前用 ships.json 的 slots（去重列举），阿拉巴马被记成 4 槽、丢掉全部 3 个副炮槽；
+//     西弗吉尼亚多出 2 个游戏内不存在的设备槽。现改用官方槽位表。
+//   - 面板：此前用 ships.stats（按舰种拍的概数，BB 偏大 71%~140%）。现改用官方分档面板按等级插值。
+//   - 键名：舰娘的 spd 是航速、装备的 spd 是机动，此前同键相加，生存轴实际在拿航速当生存因子。
+//     现统一为 eva=机动、spd=航速。
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const COMBAT_MODEL = {
-  version: 'v1',
-  // 强化每级 +1%。自建参数，未经游戏实测校准，改这里即可全局生效。
+  version: 'v2',
+  // 强化每级 +1%。自建参数，未经游戏实测校准。
   enhanceStep: 0.01,
-  // 三轴锚点：把原始量归一到 0–1。锚点按本站已持有 13 艘的实测值域标定
-  //（空装 195–480、配满 1695 之类），改动后跑 npm run test:engine 看值域诊断。
+  // 三轴锚点：把原始量归一到 0–1。按本站已持有舰娘的实测值域标定，
+  // 调面板/槽位口径后必须跑 npm run test:engine 看值域诊断并重设。
   axes: {
-    weight: { gun: 1, torpedo: 1, plane: 1, shell: 0.5, dps: 6, hp: 1, spd: 2, hpBonus: 2, hpRecovery: 10, aaDps: 10 },
-    anchor: { output: 1780, survival: 13200, antiair: 760 },
+    weight: { dps: 6, shell: 0.5, aaDps: 10, eva: 10, hpBonus: 2, hpRecovery: 10 },
+    anchor: { output: 3930, survival: 8000, antiair: 1855 },
   },
   profiles: {
     balanced: { label: '均衡', output: 0.45, survival: 0.35, antiair: 0.2 },
@@ -28,8 +44,8 @@ export const COMBAT_MODEL = {
     tank: { label: '生存', output: 0.28, survival: 0.52, antiair: 0.2 },
     antiair: { label: '防空', output: 0.25, survival: 0.25, antiair: 0.5 },
   },
-  // 分档衡量的是「这套配装发挥了多少配装空间」，不是舰娘自身强度：
-  // 分母是同一艘船从空装到理论最优的分数跨度，所以驱逐舰配满也能拿 S。
+  // 分档衡量「这套配装发挥了多少配装空间」，不是舰娘自身强度：
+  // 分母是同一艘船空装 → 理论最优的分数跨度，所以驱逐舰配满也能拿 S。
   grades: [
     { min: 95, grade: 'S', tone: 'text-al-gold' },
     { min: 85, grade: 'A', tone: 'text-r-sr' },
@@ -39,7 +55,7 @@ export const COMBAT_MODEL = {
   ],
 }
 
-// 装备 type → DPS 分桶。用于把「防空 dps」与「对舰 dps」分开，两者不能相加。
+// 装备 type → DPS 分桶。防空 dps 与对舰 dps 不能相加。
 const DPS_BUCKET = {
   炮击: 'dps_gun',
   鱼雷: 'dps_torp',
@@ -51,66 +67,120 @@ const DPS_BUCKET = {
   水下装备: 'dps_torp',
 }
 
-// 受槽位武器效率缩放的属性：这些是「武器打出去的输出」，效率直接乘在上面。
-// 命中/装填/机动/耐久加成属于装备带给舰船的属性，不受武器效率影响。
+// 受槽位武器效率缩放的属性：武器打出去的输出。命中/装填/机动/耐久类不受影响。
 const WEAPON_SCALED = new Set(['fp', 'trp', 'aa', 'air'])
 
-const EFFICIENCY_SLOTS = new Set(slotRules.efficiencySlots)
+// 这两类槽不受武器效率影响
+const NO_EFFICIENCY = new Set(['设备', '特殊兵装'])
 
-// 面板键的展示顺序。带 * 的键在舰娘基础面板里没有对应项，只显示装备增量。
+// 面板键的展示顺序。kind 只是提示，实际有无基准由数据决定。
 export const PANEL_LAYOUT = [
-  { key: 'hp', label: '耐久', kind: 'abs' },
-  { key: 'fp', label: '炮击', kind: 'abs' },
-  { key: 'trp', label: '雷击', kind: 'abs' },
-  { key: 'aa', label: '防空', kind: 'abs' },
-  { key: 'air', label: '航空', kind: 'abs' },
-  { key: 'asw', label: '反潜', kind: 'abs' },
-  { key: 'spd', label: '机动', kind: 'add' },
-  { key: 'hit', label: '命中', kind: 'add' },
-  { key: 'reload', label: '装填', kind: 'add' },
-  { key: 'hp_bonus', label: '耐久加成', kind: 'add' },
-  { key: 'hp_recovery', label: '耐久恢复', kind: 'add' },
+  { key: 'hp', label: '耐久' },
+  { key: 'fp', label: '炮击' },
+  { key: 'trp', label: '雷击' },
+  { key: 'aa', label: '防空' },
+  { key: 'air', label: '航空' },
+  { key: 'asw', label: '反潜' },
+  { key: 'eva', label: '机动' },
+  { key: 'spd', label: '航速' },
+  { key: 'hit', label: '命中' },
+  { key: 'reload', label: '装填' },
+  { key: 'luck', label: '幸运' },
+  { key: 'hp_bonus', label: '耐久加成' },
+  { key: 'hp_recovery', label: '耐久恢复' },
 ]
 
-export function basePanel(ship) {
-  const s = ship?.stats ?? {}
-  const panel = {}
-  for (const { key } of PANEL_LAYOUT) panel[key] = typeof s[key] === 'number' ? s[key] : null
-  return panel
-}
+// ── 面板 ────────────────────────────────────────────────────────────────────
 
-// 该属性在舰娘基础面板里有没有基准值。没有的只能给增量，不能给终值。
-export function hasBase(ship, key) {
-  return typeof ship?.stats?.[key] === 'number'
-}
+const TIER_LEVEL = [
+  ['base', 1],
+  ['lv100', 100],
+  ['lv120', 120],
+  ['lv125', 125],
+]
 
-export function canEquip(ship, slotType, equip) {
-  const rule = slotRules.rules[slotType]
-  if (!rule) return { ok: false, reason: 'unknown-slot' }
-  if (!rule.types.includes(equip.type)) return { ok: false, reason: 'type' }
-  if (rule.checkFit) {
-    const fits = equip.fitShipTypes
-    if (Array.isArray(fits) && fits.length > 0 && !fits.includes(ship.shipType)) {
-      return { ok: false, reason: 'shipType' }
-    }
+function interpAt(pts, lv) {
+  if (!pts.length) return null
+  if (lv <= pts[0][0]) return pts[0][1]
+  const last = pts[pts.length - 1]
+  if (lv >= last[0]) return last[1]
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [x0, y0] = pts[i]
+    const [x1, y1] = pts[i + 1]
+    if (lv >= x0 && lv <= x1) return Math.round(y0 + ((y1 - y0) * (lv - x0)) / (x1 - x0))
   }
-  return { ok: true }
+  return last[1]
 }
 
-export function slotEfficiency(ship, slotType) {
-  const v = ship?.slotEfficiency?.[slotType]
-  return typeof v === 'number' && v > 0 ? v : 1
+// 官方分档面板 → 指定等级的面板。改造船用改造档覆盖 100/120/125。
+function officialPanel(ship, lv) {
+  const entry = shipPanelsData.ships?.[ship?.id]
+  if (!entry) return null
+  const isRetro = /·改$/.test(ship?.name ?? '')
+  const tiers = { ...entry.tiers }
+  if (isRetro && entry.retrofit) Object.assign(tiers, entry.retrofit)
+
+  const keys = new Set()
+  for (const t of Object.values(tiers)) for (const k of Object.keys(t)) keys.add(k)
+
+  const out = {}
+  for (const k of keys) {
+    const pts = []
+    for (const [tier, level] of TIER_LEVEL) {
+      const v = tiers[tier]?.[k]
+      if (typeof v === 'number') pts.push([level, v])
+    }
+    const v = interpAt(pts, lv)
+    if (v != null) out[k] = v
+  }
+  return Object.keys(out).length ? out : null
 }
+
+function sitePanel(ship) {
+  const s = ship?.stats ?? {}
+  const out = {}
+  for (const { key } of PANEL_LAYOUT) if (typeof s[key] === 'number') out[key] = s[key]
+  return out
+}
+
+export function panelSource(ship) {
+  return shipPanelsData.ships?.[ship?.id] ? 'official' : 'site'
+}
+
+// 舰娘基准面板。level 缺省取该舰记录中的等级，未录入等级则按满级 125 估。
+export function effectiveLevel(ship, level) {
+  if (typeof level === 'number') return level
+  const lv = ship?.playerInfo?.level
+  return typeof lv === 'number' && lv > 0 ? lv : 125
+}
+
+const baseCache = new Map()
+
+export function basePanel(ship, level) {
+  const lv = effectiveLevel(ship, level)
+  const key = `${ship?.id ?? '?'}@${lv}`
+  const cached = baseCache.get(key)
+  if (cached) return cached
+  const out = officialPanel(ship, lv) ?? sitePanel(ship)
+  baseCache.set(key, out)
+  return out
+}
+
+export function hasBase(ship, key, level) {
+  return typeof basePanel(ship, level)[key] === 'number'
+}
+
+// ── 合成与评分 ──────────────────────────────────────────────────────────────
 
 // 单件装备对面板的贡献（已含槽位效率与强化）
-export function contributionOf(equip, slotType, efficiency = 1, enhanced = 0) {
+export function contributionOf(equip, slot, enhanced = 0) {
   const stats = equip?.stats ?? {}
   const gain = 1 + (Number(enhanced) || 0) * COMBAT_MODEL.enhanceStep
-  const eff = EFFICIENCY_SLOTS.has(slotType) ? efficiency : 1
+  const eff = NO_EFFICIENCY.has(slot?.type) ? 1 : slotEfficiency(slot)
   const bucket = DPS_BUCKET[equip?.type] ?? 'dps_aux'
   const delta = {}
   for (const [k, v] of Object.entries(stats)) {
-    if (k === 'speed' || typeof v !== 'number') continue // speed 是射速(秒)，不直接进面板
+    if (k === 'speed' || typeof v !== 'number') continue // speed 是射速（秒），不进面板
     if (k === 'dps') {
       delta[bucket] = (delta[bucket] ?? 0) + v * eff * gain
       continue
@@ -121,27 +191,22 @@ export function contributionOf(equip, slotType, efficiency = 1, enhanced = 0) {
   return delta
 }
 
-function emptyAxes() {
-  return { output: 0, survival: 0, antiair: 0 }
-}
-
-// picks: 与 ship.slots 等长的数组，元素为 equipment 对象或 null
-export function evaluateLoadout(ship, picks, profile = 'balanced') {
-  const slots = ship?.slots ?? []
-  const base = basePanel(ship)
+// picks: 与 slotLayout(ship) 等长的数组，元素为 equipment 对象或 null
+export function evaluateLoadout(ship, picks, profile = 'balanced', opts = {}) {
+  const slots = opts.slots ?? slotLayout(ship)
+  const base = basePanel(ship, opts.level)
   const panel = { ...base }
   const buckets = {}
   const items = []
-  const missingBase = new Set() // 舰娘基础面板里没有该键 → 只能给增量
+  const missingBase = new Set()
 
-  slots.forEach((slotType, i) => {
+  slots.forEach((slot, i) => {
     const equip = picks?.[i] ?? null
     if (!equip) {
-      items.push({ slot: i, slotType, equip: null, efficiency: 1, delta: {} })
+      items.push({ slot: i, slotInfo: slot, equip: null, efficiency: slotEfficiency(slot), delta: {} })
       return
     }
-    const efficiency = slotEfficiency(ship, slotType)
-    const delta = contributionOf(equip, slotType, efficiency, equip.enhanced)
+    const delta = contributionOf(equip, slot, equip.enhanced)
     for (const [k, v] of Object.entries(delta)) {
       if (k.startsWith('dps_')) {
         buckets[k] = (buckets[k] ?? 0) + v
@@ -153,7 +218,7 @@ export function evaluateLoadout(ship, picks, profile = 'balanced') {
       }
       panel[k] += v
     }
-    items.push({ slot: i, slotType, equip, efficiency, delta })
+    items.push({ slot: i, slotInfo: slot, equip, efficiency: slotEfficiency(slot), delta })
   })
 
   const W = COMBAT_MODEL.axes.weight
@@ -161,11 +226,11 @@ export function evaluateLoadout(ship, picks, profile = 'balanced') {
     (buckets.dps_gun ?? 0) + (buckets.dps_torp ?? 0) + (buckets.dps_plane ?? 0) + (buckets.dps_shell ?? 0) * W.shell
 
   const raw = {
-    output: (panel.fp ?? 0) * W.gun + (panel.trp ?? 0) * W.torpedo + (panel.air ?? 0) * W.plane + dpsOffense * W.dps,
-    // 生存以耐久为主，装备能改动的只有机动 / 耐久加成 / 耐久恢复三处
+    output: (panel.fp ?? 0) + (panel.trp ?? 0) + (panel.air ?? 0) + dpsOffense * W.dps,
+    // 生存：耐久为主，机动与耐久类装备为辅。航速(spd)不参与 —— 它不改变承伤。
     survival:
-      (panel.hp ?? 0) * W.hp +
-      (panel.spd ?? 0) * W.spd +
+      (panel.hp ?? 0) +
+      (panel.eva ?? 0) * W.eva +
       (panel.hp_bonus ?? 0) * W.hpBonus +
       (panel.hp_recovery ?? 0) * W.hpRecovery,
     antiair: (panel.aa ?? 0) + (buckets.dps_aa ?? 0) * W.aaDps,
@@ -182,8 +247,18 @@ export function evaluateLoadout(ship, picks, profile = 'balanced') {
   const score = Math.round((norm.output * w.output + norm.survival * w.survival + norm.antiair * w.antiair) * 1000)
 
   return {
-    panel, base, buckets, raw, norm, axes: norm, score, items,
+    panel,
+    base,
+    buckets,
+    raw,
+    norm,
+    axes: norm,
+    score,
+    items,
+    slots,
     missingBase: [...missingBase],
+    panelSource: panelSource(ship),
+    slotSource: slotSource(ship),
   }
 }
 
@@ -200,12 +275,13 @@ export function efficiencyGrade(pct) {
 }
 
 export function statLabel(key) {
-  return EQUIP_STAT_LABELS[key] ?? SHIP_STAT_LABELS[key] ?? key
+  return SHIP_STAT_LABELS[key] ?? EQUIP_STAT_LABELS[key] ?? key
 }
 
 // 空装评估：作为「配装带来多少增量」的基准
-export function emptyEvaluation(ship, profile) {
-  return evaluateLoadout(ship, new Array(ship?.slots?.length ?? 0).fill(null), profile)
+export function emptyEvaluation(ship, profile, opts = {}) {
+  const slots = opts.slots ?? slotLayout(ship)
+  return evaluateLoadout(ship, new Array(slots.length).fill(null), profile, { ...opts, slots })
 }
 
 export function panelDelta(after, before) {

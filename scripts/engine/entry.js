@@ -3,7 +3,17 @@
 import ships from '../../src/data/ships.json'
 import equipment from '../../src/data/equipment.json'
 import slotRules from '../../src/data/slotRules.json'
-import { evaluateLoadout, emptyEvaluation, canEquip, COMBAT_MODEL, loadoutEfficiency } from '../../src/utils/combat.js'
+import {
+  evaluateLoadout,
+  emptyEvaluation,
+  canEquip,
+  COMBAT_MODEL,
+  loadoutEfficiency,
+  slotLayout,
+  basePanel,
+  panelSource,
+  slotSource,
+} from '../../src/utils/combat.js'
 import { solveLoadout, recordedPicks, recordedExcess, inventoryAudit, stockOf } from '../../src/utils/fit.js'
 
 const REASONS = new Set(['not-owned', 'stock-exhausted'])
@@ -14,15 +24,33 @@ export function runEngineChecks() {
   const lines = []
   const check = (cond, msg) => { if (!cond) fail.push(msg) }
 
-  // 0. 槽位规则覆盖率：数据里出现的每个槽位类型都必须有可装性规则
-  const slotTypes = [...new Set(ships.flatMap(s => s.slots))]
+  // 0. 槽位规则覆盖率：实际展开出的每个槽位类型都必须有可装性规则
+  const layouts = new Map(ships.map(s => [s.id, slotLayout(s)]))
+  const slotTypes = [...new Set([...layouts.values()].flat().map(x => x.type))]
   for (const t of slotTypes) {
     check(!!slotRules.rules[t], `slotRules 缺少槽位类型规则：${t}`)
   }
   lines.push(`槽位类型 ${slotTypes.length} 种，规则覆盖 ${slotTypes.filter(t => slotRules.rules[t]).length} 种`)
 
+  // 0b. 官方档案接入情况：槽位总数必须 ≥ 设备槽数 + 官方武器槽数
+  const fromOfficial = ships.filter(s => slotSource(s) === 'official').length
+  const panelFromOfficial = ships.filter(s => panelSource(s) === 'official').length
+  lines.push(`数据来源：槽位用官方档案 ${fromOfficial}/${ships.length} 艘 · 面板用官方档案 ${panelFromOfficial}/${ships.length} 艘`)
+
+  // 0c. 面板插值单调：等级越高，面板值不应下降
   for (const ship of ships) {
-    const n = ship.slots.length
+    const at60 = basePanel(ship, 60)
+    const at125 = basePanel(ship, 125)
+    for (const k of ['hp', 'fp', 'trp', 'aa']) {
+      if (typeof at60[k] === 'number' && typeof at125[k] === 'number') {
+        check(at125[k] >= at60[k], `${ship.id} 面板插值在 ${k} 上非单调：Lv60=${at60[k]} Lv125=${at125[k]}`)
+      }
+    }
+    check((at125.hp ?? 0) > 0, `${ship.id} 面板缺少耐久基准`)
+  }
+
+  for (const ship of ships) {
+    const n = layouts.get(ship.id).length
     const empty = emptyEvaluation(ship, 'balanced')
 
     for (const profile of PROFILES) {
@@ -54,7 +82,8 @@ export function runEngineChecks() {
       }
       // 每件入选装备都必须真的能装进该槽
       ;(solved.picks ?? []).forEach((p, i) => {
-        if (p) check(canEquip(ship, ship.slots[i], p).ok, `${ship.id}[${profile}] ${p.name} 不能装进 ${ship.slots[i]}`)
+        const slot = solved.slots[i]
+        if (p) check(canEquip(ship, slot, p).ok, `${ship.id}[${profile}] ${p.name} 不能装进 ${slot?.type}`)
       })
     }
 

@@ -5,6 +5,8 @@ import equipment from '../data/equipment.json'
 import { RarityBadge, rarityStars } from '../utils/rarity.jsx'
 import { ShipTypeTag, getShipTypeColor } from '../utils/shipType.jsx'
 import { SHIP_STAT_LABELS, SHIP_STAT_ICONS } from '../constants/display.jsx'
+import { slotLayout, slotSource, slotEfficiency } from '../utils/combat.js'
+import { recordedPicks } from '../utils/fit.js'
 import { useDocumentTitle } from '../utils/useDocumentTitle.js'
 import { useBackToList } from '../utils/useBackToList.js'
 
@@ -22,6 +24,12 @@ export default function ShipDetail() {
       </div>
     )
   }
+
+  const slots = slotLayout(ship)
+  const picks = recordedPicks(ship, equipment)
+  // 记录里提到、但装备图鉴尚未收录的名字（详情页会漏显）
+  const unmatched = [...new Set(ship.equipment?.recommended ?? [])].filter(n => !equipment.some(e => e.name === n))
+  const recommendedCount = ship.equipment?.recommended?.length ?? 0
 
   return (
     <div>
@@ -66,20 +74,34 @@ export default function ShipDetail() {
         </div>
 
         <h2 className="text-al-gold font-semibold mb-3 flex items-center gap-2"><Shield className="w-4 h-4" /> 装备槽位</h2>
+        <p className="text-xs text-al-text-dim mb-2">
+          {slotSource(ship) === 'official'
+            ? '槽位与武器效率取自官方档案（满突破值）'
+            : '官方档案未收录该舰，槽位回退用本站记录、效率按 100% 计'}
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-          {(ship.slots || []).map((slotType, i) => {
-            const equipName = ship.equipment?.recommended?.[i]
-            const equip = equipName ? equipment.find(e => e.name === equipName) : null
+          {picks.map((equip, i) => {
+            const slot = slots[i]
+            const isWeapon = slot?.type !== '设备' && slot?.type !== '特殊兵装'
             return (
               <div key={i} className="al-panel-light p-3">
-                <div className="text-xs text-al-text-dim mb-1">槽位{i + 1} · {slotType}</div>
-                <div className="text-sm text-al-text font-medium">{equipName || '未配置'}</div>
+                <div className="text-xs text-al-text-dim mb-1">
+                  槽位{i + 1} · {slot?.type}
+                  {isWeapon && <span className="ml-1">· 效率 {Math.round(slotEfficiency(slot) * 100)}%</span>}
+                </div>
+                <div className="text-sm text-al-text font-medium">
+                  {equip?.name || (i < recommendedCount ? '未配置' : '空')}
+                </div>
                 {equip && <div className="text-xs text-al-text-dim mt-0.5">{equip.type} · {equip.rarity} · 评分 {equip.rating}</div>}
-                {equipName && !equip && <div className="text-xs text-yellow-500 mt-0.5">该装备尚未收录进装备图鉴</div>}
               </div>
             )
           })}
         </div>
+        {unmatched.length > 0 && (
+          <p className="text-xs text-yellow-500 mb-6 -mt-4">
+            记录的配装里有 {unmatched.length} 件尚未收录进装备图鉴：{unmatched.join('、')}
+          </p>
+        )}
 
         {ship.equipment?.actual && (
           <>

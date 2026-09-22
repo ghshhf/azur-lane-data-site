@@ -6,3 +6,4 @@ dist/
 .trae-html-share-packages/
 .smoke/
 .engine/
+.cache/

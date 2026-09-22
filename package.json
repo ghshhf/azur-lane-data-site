@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fetch:official": "node scripts/fetch-official.mjs",
     "validate": "node scripts/validate-data.mjs",
     "prebuild": "node scripts/validate-data.mjs",
     "build": "vite build",

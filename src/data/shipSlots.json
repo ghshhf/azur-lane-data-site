@@ -1,0 +1,942 @@
+{
+  "_meta": {
+    "source": "AzurAPI / azurapi-js-setup（游戏档案数据）",
+    "repo": "https://github.com/AzurAPI/azurapi-js-setup",
+    "endpoint": "dist/ships.json",
+    "fetchedAt": "2026-09-22",
+    "matched": "18/24",
+    "note": "槽位顺序与数量即游戏内装备槽。效率三档：min=未突破、max=满突破、kai=改造后。"
+  },
+  "ships": {
+    "laffey_ii": {
+      "officialName": "拉菲",
+      "officialId": "019",
+      "hullType": "Destroyer",
+      "siteType": "DD",
+      "match": "proto",
+      "slots": [
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 120,
+            "max": 140,
+            "kai": 165
+          }
+        },
+        {
+          "official": "Torpedoes",
+          "label": "鱼雷",
+          "types": [
+            "鱼雷"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 120,
+            "max": 125,
+            "kai": 125
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 120,
+            "max": 125,
+            "kai": 125
+          }
+        }
+      ]
+    },
+    "unicorn_mod": {
+      "officialName": "独角兽",
+      "officialId": "142",
+      "hullType": "Light Carrier",
+      "siteType": "CVL",
+      "match": "retrofit",
+      "slots": [
+        {
+          "official": "Fighters",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 115,
+            "max": 130,
+            "kai": 145
+          }
+        },
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 115,
+            "max": 130,
+            "kai": 135
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 80,
+            "max": 80,
+            "kai": 80
+          }
+        }
+      ]
+    },
+    "baltimore": {
+      "officialName": "巴尔的摩",
+      "officialId": "050",
+      "hullType": "Heavy Cruiser",
+      "siteType": "CA",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CA Guns",
+          "label": "重巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 110,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 70,
+            "max": 75,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 130,
+            "max": 135,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "alabama": {
+      "officialName": "阿拉巴马",
+      "officialId": "401",
+      "hullType": "Battleship",
+      "siteType": "BB",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "BB Guns",
+          "label": "战列主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 100,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 3,
+          "eff": {
+            "min": 200,
+            "max": 200,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 100,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "st_louis": {
+      "officialName": "圣路易斯",
+      "officialId": "305",
+      "hullType": "Light Cruiser",
+      "siteType": "CL",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CL Guns",
+          "label": "轻巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 105,
+            "max": 135,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 65,
+            "max": 65,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 100,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "bluemarton": {
+      "officialName": "布莱默顿",
+      "officialId": "443",
+      "hullType": "Heavy Cruiser",
+      "siteType": "CA",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CA Guns",
+          "label": "重巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 105,
+            "max": 125,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 65,
+            "max": 70,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 135,
+            "max": 140,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "arizona": {
+      "officialName": "亚利桑那",
+      "officialId": "055",
+      "hullType": "Battleship",
+      "siteType": "BB",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "BB Guns",
+          "label": "战列主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 100,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 3,
+          "eff": {
+            "min": 200,
+            "max": 200,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 100,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "prince_henry": {
+      "officialName": "普林斯顿",
+      "officialId": "473",
+      "hullType": "Light Carrier",
+      "siteType": "CVL",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "Fighters",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 110,
+            "max": 125,
+            "kai": null
+          }
+        },
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 140,
+            "max": 155,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 80,
+            "max": 80,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "atlanta": {
+      "officialName": "亚特兰大",
+      "officialId": "034",
+      "hullType": "Light Cruiser",
+      "siteType": "CL",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CL/DD Guns",
+          "label": "通用炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 105,
+            "kai": null
+          }
+        },
+        {
+          "official": "Torpedoes",
+          "label": "鱼雷",
+          "types": [
+            "鱼雷"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 130,
+            "max": 135,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 140,
+            "max": 160,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "west_virginia": {
+      "officialName": "西弗吉尼亚",
+      "officialId": "062",
+      "hullType": "Battleship",
+      "siteType": "BB",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "BB Guns",
+          "label": "战列主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 100,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 3,
+          "eff": {
+            "min": 200,
+            "max": 200,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 100,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "gridley": {
+      "officialName": "格里德利",
+      "officialId": "007",
+      "hullType": "Destroyer",
+      "siteType": "DD",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 110,
+            "max": 115,
+            "kai": null
+          }
+        },
+        {
+          "official": "Torpedoes",
+          "label": "鱼雷",
+          "types": [
+            "鱼雷"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 115,
+            "max": 135,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 120,
+            "max": 125,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "shinano": {
+      "officialName": "信浓",
+      "officialId": "231",
+      "hullType": "Aircraft Carrier",
+      "siteType": "CV",
+      "match": "alias",
+      "slots": [
+        {
+          "official": "Fighters / Dive Bombers (LB1) / Torpedo Bombers (LB1)",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 120,
+            "max": 125,
+            "kai": null
+          }
+        },
+        {
+          "official": "Dive Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 120,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 4,
+          "eff": {
+            "min": 125,
+            "max": 140,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "ferry": {
+      "officialName": "科隆",
+      "officialId": "240",
+      "hullType": "Light Cruiser",
+      "siteType": "CL",
+      "match": "alias",
+      "slots": [
+        {
+          "official": "CL Guns",
+          "label": "轻巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 110,
+            "max": 120,
+            "kai": 120
+          }
+        },
+        {
+          "official": "Torpedoes",
+          "label": "鱼雷",
+          "types": [
+            "鱼雷"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 145,
+            "max": 155,
+            "kai": 170
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 120,
+            "max": 130,
+            "kai": 135
+          }
+        }
+      ]
+    },
+    "yujiro": {
+      "officialName": "欧根亲王",
+      "officialId": "244",
+      "hullType": "Heavy Cruiser",
+      "siteType": "CA",
+      "match": "alias",
+      "slots": [
+        {
+          "official": "CA Guns",
+          "label": "重巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 115,
+            "max": 125,
+            "kai": null
+          }
+        },
+        {
+          "official": "Torpedoes",
+          "label": "鱼雷",
+          "types": [
+            "鱼雷"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 150,
+            "max": 160,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 110,
+            "max": 120,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "london": {
+      "officialName": "伦敦",
+      "officialId": "119",
+      "hullType": "Heavy Cruiser",
+      "siteType": "CA",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CA Guns",
+          "label": "重巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 130,
+            "max": 145,
+            "kai": 150
+          }
+        },
+        {
+          "official": "Torpedoes / DD Guns (Retrofit)",
+          "label": "鱼雷/副炮",
+          "types": [
+            "鱼雷",
+            "炮击",
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 145,
+            "max": 160,
+            "kai": 160
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 100,
+            "max": 100,
+            "kai": 115
+          }
+        }
+      ]
+    },
+    "ark": {
+      "officialName": "皇家方舟",
+      "officialId": "144",
+      "hullType": "Aircraft Carrier",
+      "siteType": "CV",
+      "match": "alias",
+      "slots": [
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 125,
+            "max": 140,
+            "kai": 143
+          }
+        },
+        {
+          "official": "Torpedo Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 3,
+          "eff": {
+            "min": 125,
+            "max": 140,
+            "kai": 143
+          }
+        },
+        {
+          "official": "Dive Bombers",
+          "label": "舰载机",
+          "types": [
+            "舰载机"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 80,
+            "max": 80,
+            "kai": 95
+          }
+        }
+      ]
+    },
+    "cleveland": {
+      "officialName": "克利夫兰",
+      "officialId": "037",
+      "hullType": "Light Cruiser",
+      "siteType": "CL",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CL Guns",
+          "label": "轻巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 100,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 70,
+            "max": 70,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 120,
+            "max": 120,
+            "kai": null
+          }
+        }
+      ]
+    },
+    "birmingham": {
+      "officialName": "伯明翰",
+      "officialId": "405",
+      "hullType": "Light Cruiser",
+      "siteType": "CL",
+      "match": "exact",
+      "slots": [
+        {
+          "official": "CL Guns",
+          "label": "轻巡主炮",
+          "types": [
+            "炮击"
+          ],
+          "checkFit": true,
+          "count": 2,
+          "eff": {
+            "min": 100,
+            "max": 130,
+            "kai": null
+          }
+        },
+        {
+          "official": "DD Guns",
+          "label": "副炮",
+          "types": [
+            "炮击",
+            "防空"
+          ],
+          "checkFit": false,
+          "count": 1,
+          "eff": {
+            "min": 65,
+            "max": 65,
+            "kai": null
+          }
+        },
+        {
+          "official": "Anti-Air Guns",
+          "label": "防空",
+          "types": [
+            "防空"
+          ],
+          "checkFit": true,
+          "count": 1,
+          "eff": {
+            "min": 130,
+            "max": 130,
+            "kai": null
+          }
+        }
+      ]
+    }
+  }
+}

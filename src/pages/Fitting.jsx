@@ -2,7 +2,21 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ships from '../data/ships.json'
 import equipment from '../data/equipment.json'
-import { COMBAT_MODEL, PANEL_LAYOUT, evaluateLoadout, emptyEvaluation, slotEfficiency, statLabel, loadoutEfficiency, efficiencyGrade } from '../utils/combat.js'
+import {
+  COMBAT_MODEL,
+  PANEL_LAYOUT,
+  evaluateLoadout,
+  emptyEvaluation,
+  slotEfficiency,
+  slotLayout,
+  slotSource,
+  shipTypeMismatch,
+  panelSource,
+  statLabel,
+  loadoutEfficiency,
+  efficiencyGrade,
+} from '../utils/combat.js'
+import shipSlotsMeta from '../data/shipSlots.json'
 import slotRules from '../data/slotRules.json'
 import { solveLoadout, recordedPicks, recordedExcess, slotCandidates, inventoryAudit } from '../utils/fit.js'
 import { useDocumentTitle } from '../utils/useDocumentTitle.js'
@@ -59,7 +73,10 @@ export default function Fitting() {
   const [showModel, setShowModel] = useState(false)
 
   const ship = ships.find(s => s.id === shipId) ?? ships[0]
-  const slots = ship.slots ?? []
+  const slots = useMemo(() => slotLayout(ship), [ship])
+  const slotsFromOfficial = slotSource(ship) === 'official'
+  const panelFromOfficial = panelSource(ship) === 'official'
+  const typeMismatch = shipTypeMismatch(ship)
 
   const recorded = useMemo(() => recordedPicks(ship, equipment), [ship])
   const recordedIds = useMemo(() => recorded.map(e => e?.id ?? null), [recorded])
@@ -169,6 +186,30 @@ export default function Fitting() {
           {ship.levelCap ? ` / 上限 ${ship.levelCap}` : ''}
         </span>
         <span className="text-al-text-muted">槽位 {slots.length}</span>
+        {typeMismatch && (
+          <span
+            className="al-badge bg-r-r/20 text-r-r"
+            title={`官方档案为 ${typeMismatch.official}，适配判断按官方口径；站内记录写成 ${typeMismatch.site}`}
+          >
+            舰种口径：官方 {typeMismatch.official} / 站内 {typeMismatch.site}
+          </span>
+        )}
+        <span
+          className={`al-badge ${slotsFromOfficial ? 'bg-al-panel-light text-al-text-muted' : 'bg-r-r/20 text-r-r'}`}
+          title={
+            slotsFromOfficial
+              ? `槽位与武器效率取自官方档案（${shipSlotsMeta._meta.source}，抓取于 ${shipSlotsMeta._meta.fetchedAt}）`
+              : '官方档案未收录该舰，槽位回退用本站记录、效率按 100% 计'
+          }
+        >
+          {slotsFromOfficial ? '槽位：官方档案' : '槽位：本站记录'}
+        </span>
+        <span
+          className={`al-badge ${panelFromOfficial ? 'bg-al-panel-light text-al-text-muted' : 'bg-r-r/20 text-r-r'}`}
+          title={panelFromOfficial ? '面板取自官方档案，按等级插值' : '官方档案未收录该舰，面板回退用本站 stats（按舰种概数）'}
+        >
+          {panelFromOfficial ? '面板：官方档案' : '面板：本站 stats'}
+        </span>
         {!ship.playerInfo?.owned && <span className="al-badge bg-al-panel-light text-al-text-dim">未持有</span>}
       </div>
 
@@ -226,19 +267,19 @@ export default function Fitting() {
               </tr>
             </thead>
             <tbody>
-              {slots.map((slotType, i) => {
-                const eff = slotEfficiency(ship, slotType)
-                const cands = slotCandidates(ship, slotType, equipment, { ownedOnly: false })
+              {slots.map((slot, i) => {
+                const eff = slotEfficiency(slot)
+                const cands = slotCandidates(ship, slot, equipment, { ownedOnly: false })
                 const chosen = selected[i]
                 const item = current.items[i]
                 const delta = item?.delta ?? {}
                 return (
                   <tr key={i}>
                     <td className="al-table-td text-al-text-dim">{i + 1}</td>
-                    <td className="al-table-td text-al-text-muted whitespace-nowrap">
-                      {slotType}
+                    <td className="al-table-td text-al-text-muted whitespace-nowrap" title={slot.official ? `官方槽位类型：${slot.official}` : undefined}>
+                      {slot.type}
                       <span className="text-xs text-al-text-dim ml-1">
-                        （可装 {cands.length} / 持有 {slotCandidates(ship, slotType, equipment, { ownedOnly: true }).length}）
+                        （可装 {cands.length} / 持有 {slotCandidates(ship, slot, equipment, { ownedOnly: true }).length}）
                       </span>
                     </td>
                     <td className="al-table-td">
@@ -266,7 +307,13 @@ export default function Fitting() {
                       </select>
                     </td>
                     <td className="al-table-td text-al-text-muted">
-                      {eff === 1 ? <span className="text-al-text-dim">100%*</span> : `${Math.round(eff * 100)}%`}
+                      {slot.type === '设备' || slot.type === '特殊兵装' ? (
+                        <span className="text-al-text-dim">—</span>
+                      ) : eff === 1 ? (
+                        <span className="text-al-text-dim">100%*</span>
+                      ) : (
+                        `${Math.round(eff * 100)}%`
+                      )}
                     </td>
                     <td className="al-table-td">
                       {Object.keys(delta).length === 0 ? (
@@ -289,7 +336,11 @@ export default function Fitting() {
           </table>
         </div>
         <p className="px-4 py-3 text-xs text-al-text-dim border-t border-al-border">
-          * 该槽位的武器效率未录入，按 100% 计算。效率是武器输出的乘数，录入后战力会变——见下方口径说明。
+          效率是武器输出的乘数（单向前作用于主炮/副炮/鱼雷/防空/舰载机的输出），取官方档案的<strong className="text-al-text-muted">满突破值</strong>。
+          突破途中会低于此值（如阿拉巴马主炮 100% → +5% → +10% → +15% → 130%）。
+          {slotsFromOfficial
+            ? ' 设备与特殊兵装槽不参与效率缩放。'
+            : ' 官方档案未收录该舰，效率按 100% 计，实际战力会高于此值。'}
         </p>
       </div>
 
@@ -439,17 +490,24 @@ export default function Fitting() {
                 面板 = 舰娘基准 + Σ（装备属性 × 槽位武器效率 × (1 + 强化等级 × {COMBAT_MODEL.enhanceStep}))
               </p>
               <p className="text-xs mt-1">
-                武器效率只乘在 fp / trp / aa / air / dps 上；命中、装填、机动、耐久加成是装备带给舰船的属性，不受效率影响。
+                武器效率只乘在 fp / trp / aa / air / dps 上；命中、装填、机动、耐久加成、耐久恢复不受效率影响。
                 仅武器槽计入效率：{slotRules.efficiencySlots.join('、')}。
+              </p>
+              <p className="text-xs mt-1">
+                舰娘基准面板与武器效率均取自官方档案（按等级插值），不是自建估算。
               </p>
             </div>
             <div>
               <p className="text-al-text font-medium mb-1">第 ② 步：三轴归一 + 加权</p>
               <ul className="text-xs space-y-0.5">
-                <li>输出 = 炮击×1 + 雷击×1 + 航空×1 +（对舰 dps）×6　锚点 {COMBAT_MODEL.axes.anchor.output}</li>
-                <li>生存 = 耐久×1 + 机动×2 + 耐久加成×2 + 耐久恢复×10　锚点 {COMBAT_MODEL.axes.anchor.survival}</li>
-                <li>防空 = 防空×1 +（防空 dps）×10　锚点 {COMBAT_MODEL.axes.anchor.antiair}</li>
+                <li>输出 = 炮击×1 + 雷击×1 + 航空×1 +（对舰 dps）×{COMBAT_MODEL.axes.weight.dps}　锚点 {COMBAT_MODEL.axes.anchor.output}</li>
+                <li>
+                  生存 = 耐久×1 + 机动×{COMBAT_MODEL.axes.weight.eva} + 耐久加成×{COMBAT_MODEL.axes.weight.hpBonus} + 耐久恢复×
+                  {COMBAT_MODEL.axes.weight.hpRecovery}　锚点 {COMBAT_MODEL.axes.anchor.survival}
+                </li>
+                <li>防空 = 防空×1 +（防空 dps）×{COMBAT_MODEL.axes.weight.aaDps}　锚点 {COMBAT_MODEL.axes.anchor.antiair}</li>
                 <li>评分 = Σ（轴归一值 × 权重）× 1000，权重随上方口径切换</li>
+                <li>航速（spd）不入任何轴——它不改变承伤，只有机动（eva）进生存轴</li>
               </ul>
             </div>
             <p className="text-xs">

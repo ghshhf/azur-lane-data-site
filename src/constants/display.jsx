@@ -1,20 +1,26 @@
 import { Heart, Swords, Zap, Shield, Wind, Anchor, Crosshair, Cog, Sparkles } from 'lucide-react'
 
-// 属性键 → 中文名。三份数据集的同名键含义不同（ships.spd=航速，equipment.spd=机动），故分开维护。
+// 属性键 → 中文名。
+// 键名口径（2026-09-22 统一）：eva=机动、spd=航速、speed=射速（秒）。
+// 舰娘面板只给 spd，装备只给 eva；改名前两者同名不同义，会被误当作同一个量相加。
 export const SHIP_STAT_LABELS = {
   hp: '耐久', fp: '炮击', trp: '雷击', aa: '防空',
-  air: '航空', asw: '反潜', spd: '航速', luck: '幸运',
+  air: '航空', asw: '反潜', eva: '机动', spd: '航速',
+  hit: '命中', reload: '装填', luck: '幸运',
+  hp_bonus: '耐久加成', hp_recovery: '耐久恢复',
 }
 
 export const SHIP_STAT_ICONS = {
   hp: Heart, fp: Swords, trp: Zap, aa: Shield,
-  air: Wind, asw: Anchor, spd: Crosshair, luck: Cog,
+  air: Wind, asw: Anchor, eva: Wind, spd: Crosshair,
+  hit: Crosshair, reload: Cog, luck: Cog,
+  hp_bonus: Heart, hp_recovery: Heart,
 }
 
 export const EQUIP_STAT_LABELS = {
   fp: '炮击', trp: '雷击', aa: '防空', air: '航空', asw: '反潜',
   dps: 'DPS', speed: '射速', hit: '命中', reload: '装填',
-  spd: '机动', hp_bonus: '耐久加成', hp_recovery: '耐久恢复',
+  eva: '机动', hp_bonus: '耐久加成', hp_recovery: '耐久恢复',
 }
 
 export const FLEET_STAT_LABELS = {

@@ -5,6 +5,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { slotLayout } from '../src/utils/slots.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const load = (name) => JSON.parse(readFileSync(join(root, 'src', 'data', name), 'utf8'))
@@ -92,14 +93,15 @@ for (const stage of stages) {
 // 4. 配装可装性规则（slotRules.json）：配装台的地基，规则与数据脱钩会让整个求解器失效
 const slotRules = load('slotRules.json')
 const rules = slotRules.rules ?? {}
-const ruleTypes = new Set(Object.values(rules).flatMap(r => r.types ?? []))
 const equipTypes = new Set(equipment.map(e => e.type))
-const dataSlotTypes = new Set(ships.flatMap(s => s.slots ?? []))
+// 用运行时同一份 slotLayout 展开（官方槽位 + 补齐的设备槽），不在此处重写一遍口径
+const layouts = new Map(ships.map(s => [s.id, slotLayout(s)]))
+const dataSlotTypes = new Set([...layouts.values()].flat().map(s => s.type))
 for (const t of dataSlotTypes) {
-  if (!rules[t]) fail(`slotRules.json：数据里出现的槽位类型「${t}」没有可装性规则`)
+  if (!rules[t]) fail(`slotRules.json：展开后的槽位类型「${t}」没有可装性规则`)
 }
 for (const t of Object.keys(rules)) {
-  if (!dataSlotTypes.has(t)) warn(`slotRules.json：规则「${t}」在舰娘槽位数据里没有对应，可能是拼写残留`)
+  if (!dataSlotTypes.has(t)) warn(`slotRules.json：规则「${t}」在展开后的槽位里没有对应，可能是拼写残留`)
   for (const et of rules[t].types ?? []) {
     if (!equipTypes.has(et)) fail(`slotRules.json：「${t}」映射到不存在的装备类型「${et}」`)
   }
@@ -109,11 +111,70 @@ for (const t of dataSlotTypes) {
   const reachable = equipment.filter(e => (rules[t]?.types ?? []).includes(e.type))
   if (reachable.length === 0) warn(`槽位类型「${t}」在装备表里没有任何可装装备（界面显示为空槽）`)
 }
+// 4b. 官方档案数据（shipSlots / shipPanels）与本站舰娘的一致性
+const shipSlotsData = load('shipSlots.json')
+const shipPanelsData = load('shipPanels.json')
+for (const ship of ships) {
+  const layout = layouts.get(ship.id)
+  if (!layout.length) fail(`ships.json：${ship.id} 展开后没有任何槽位`)
+  const e = shipSlotsData.ships?.[ship.id]
+  if (e) {
+    if (!e.slots?.length) fail(`shipSlots.json：${ship.id} 有记录但没有槽位`)
+    for (const s of e.slots) {
+      if (!rules[s.label]) fail(`shipSlots.json：${ship.id} 的槽位「${s.label}」在 slotRules 里没有规则`)
+      if (!(Number(s.count) >= 1)) fail(`shipSlots.json：${ship.id} 的槽位「${s.label}」count 非法 -> ${s.count}`)
+      const eff = s.eff ?? {}
+      if (eff.max != null && eff.min != null && eff.max < eff.min) {
+        fail(`shipSlots.json：${ship.id}「${s.label}」满突破效率低于未突破效率`)
+      }
+    }
+  }
+  // 槽位记录里的舰娘必须在 ships.json 里存在（改名后忘记重跑 fetch 会留下孤儿）
+  const p = shipPanelsData.ships?.[ship.id]
+  if (p) {
+    for (const tier of ['lv100', 'lv120', 'lv125']) {
+      if (!p.tiers?.[tier]) warn(`shipPanels.json：${ship.id} 缺少 ${tier} 档面板`)
+    }
+    const t100 = p.tiers?.lv100 ?? {}
+    const t125 = p.tiers?.lv125 ?? {}
+    for (const k of Object.keys(t100)) {
+      if (typeof t125[k] === 'number' && t125[k] < t100[k]) {
+        fail(`shipPanels.json：${ship.id} 的 ${k} 在 Lv120/125 低于 Lv100（面板应随等级单调）`)
+      }
+    }
+  }
+}
 if (slotRules.efficiencySlots) {
   for (const t of slotRules.efficiencySlots) {
     if (!rules[t]) fail(`slotRules.json：efficiencySlots 里的「${t}」不是有效槽位类型`)
   }
 }
+// 官方档案覆盖率（提示项：未收录的舰娘走本站回退口径）
+const shipIdSet = new Set(ships.map(s => s.id))
+for (const uid of Object.keys(shipSlotsData.ships ?? {})) {
+  if (!shipIdSet.has(uid)) warn(`shipSlots.json：存在 ships.json 里没有的舰娘记录 -> ${uid}`)
+}
+for (const uid of Object.keys(shipPanelsData.ships ?? {})) {
+  if (!shipIdSet.has(uid)) warn(`shipPanels.json：存在 ships.json 里没有的舰娘记录 -> ${uid}`)
+}
+const officialSlots = ships.filter(s => shipSlotsData.ships?.[s.id]).length
+const officialPanels = ships.filter(s => shipPanelsData.ships?.[s.id]).length
+const typeMismatch = ships.filter(s => {
+  const t = shipSlotsData.ships?.[s.id]?.siteType
+  return t && t !== s.shipType
+})
+if (typeMismatch.length) {
+  warn(
+    `站内舰种与官方档案不符（适配判断已按官方口径，界面会标注）：` +
+      typeMismatch
+        .map(s => `${s.name} 站内 ${s.shipType} / 官方 ${shipSlotsData.ships[s.id].siteType}`)
+        .join('；'),
+  )
+}
+warn(
+  `官方档案覆盖：槽位 ${officialSlots}/${ships.length} 艘 · 面板 ${officialPanels}/${ships.length} 艘` +
+    `（未覆盖的舰娘回退用本站数据，效率按 100% 计）`,
+)
 
 // 5. 统计与孤儿数据（仅提示，不阻断）
 const inFleet = new Set(fleets.flatMap(f => [...(f.front ?? []), ...(f.back ?? [])]))

@@ -1,0 +1,1261 @@
+{
+  "_meta": {
+    "source": "AzurAPI / azurapi-js-setup（游戏档案数据）",
+    "repo": "https://github.com/AzurAPI/azurapi-js-setup",
+    "endpoint": "dist/ships.json",
+    "fetchedAt": "2026-09-22",
+    "matched": "18/24",
+    "note": "官方分档面板，未给终值。运行时按舰娘等级在档位间插值。键名：eva=机动、spd=航速、hit=命中。"
+  },
+  "ships": {
+    "laffey_ii": {
+      "officialName": "拉菲",
+      "match": "proto",
+      "tiers": {
+        "base": {
+          "hp": 319,
+          "fp": 19,
+          "trp": 56,
+          "aa": 33,
+          "air": 0,
+          "asw": 49,
+          "eva": 60,
+          "spd": 45,
+          "reload": 81,
+          "hit": 75,
+          "luck": 18
+        },
+        "lv100": {
+          "hp": 1787,
+          "fp": 95,
+          "trp": 286,
+          "aa": 161,
+          "air": 0,
+          "asw": 188,
+          "eva": 181,
+          "spd": 45,
+          "reload": 208,
+          "hit": 200,
+          "luck": 18
+        },
+        "lv120": {
+          "hp": 1980,
+          "fp": 101,
+          "trp": 302,
+          "aa": 176,
+          "air": 0,
+          "asw": 199,
+          "eva": 205,
+          "spd": 45,
+          "reload": 220,
+          "hit": 224,
+          "luck": 18
+        },
+        "lv125": {
+          "hp": 2029,
+          "fp": 102,
+          "trp": 306,
+          "aa": 180,
+          "air": 0,
+          "asw": 202,
+          "eva": 210,
+          "spd": 45,
+          "reload": 223,
+          "hit": 230,
+          "luck": 18
+        }
+      },
+      "retrofit": {
+        "lv100": {
+          "hp": 1952,
+          "fp": 155,
+          "trp": 326,
+          "aa": 161,
+          "air": 0,
+          "asw": 188,
+          "eva": 221,
+          "spd": 45,
+          "reload": 208,
+          "hit": 200,
+          "luck": 18
+        },
+        "lv120": {
+          "hp": 2145,
+          "fp": 161,
+          "trp": 342,
+          "aa": 176,
+          "air": 0,
+          "asw": 199,
+          "eva": 245,
+          "spd": 45,
+          "reload": 220,
+          "hit": 224,
+          "luck": 18
+        },
+        "lv125": {
+          "hp": 2194,
+          "fp": 162,
+          "trp": 346,
+          "aa": 180,
+          "air": 0,
+          "asw": 202,
+          "eva": 250,
+          "spd": 45,
+          "reload": 223,
+          "hit": 230,
+          "luck": 18
+        }
+      }
+    },
+    "unicorn_mod": {
+      "officialName": "独角兽",
+      "match": "retrofit",
+      "tiers": {
+        "base": {
+          "hp": 890,
+          "fp": 0,
+          "trp": 0,
+          "aa": 50,
+          "air": 57,
+          "asw": 26,
+          "eva": 18,
+          "spd": 24,
+          "reload": 66,
+          "hit": 27,
+          "luck": 78
+        },
+        "lv100": {
+          "hp": 4830,
+          "fp": 0,
+          "trp": 0,
+          "aa": 245,
+          "air": 291,
+          "asw": 102,
+          "eva": 58,
+          "spd": 24,
+          "reload": 171,
+          "hit": 74,
+          "luck": 78
+        },
+        "lv120": {
+          "hp": 5337,
+          "fp": 0,
+          "trp": 0,
+          "aa": 268,
+          "air": 307,
+          "asw": 109,
+          "eva": 66,
+          "spd": 24,
+          "reload": 181,
+          "hit": 84,
+          "luck": 78
+        },
+        "lv125": {
+          "hp": 5464,
+          "fp": 0,
+          "trp": 0,
+          "aa": 274,
+          "air": 311,
+          "asw": 110,
+          "eva": 68,
+          "spd": 24,
+          "reload": 183,
+          "hit": 86,
+          "luck": 78
+        }
+      },
+      "retrofit": {
+        "lv100": {
+          "hp": 5040,
+          "fp": 0,
+          "trp": 0,
+          "aa": 315,
+          "air": 336,
+          "asw": 102,
+          "eva": 58,
+          "spd": 24,
+          "reload": 176,
+          "hit": 79,
+          "luck": 78
+        },
+        "lv120": {
+          "hp": 5547,
+          "fp": 0,
+          "trp": 0,
+          "aa": 338,
+          "air": 352,
+          "asw": 109,
+          "eva": 66,
+          "spd": 24,
+          "reload": 186,
+          "hit": 89,
+          "luck": 78
+        },
+        "lv125": {
+          "hp": 5674,
+          "fp": 0,
+          "trp": 0,
+          "aa": 344,
+          "air": 356,
+          "asw": 110,
+          "eva": 68,
+          "spd": 24,
+          "reload": 188,
+          "hit": 91,
+          "luck": 78
+        }
+      }
+    },
+    "baltimore": {
+      "officialName": "巴尔的摩",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 793,
+          "fp": 50,
+          "trp": 0,
+          "aa": 49,
+          "air": 0,
+          "asw": 0,
+          "eva": 9,
+          "spd": 26,
+          "reload": 68,
+          "hit": 45,
+          "luck": 56
+        },
+        "lv100": {
+          "hp": 4167,
+          "fp": 256,
+          "trp": 0,
+          "aa": 238,
+          "air": 0,
+          "asw": 0,
+          "eva": 49,
+          "spd": 26,
+          "reload": 174,
+          "hit": 121,
+          "luck": 56
+        },
+        "lv120": {
+          "hp": 4591,
+          "fp": 270,
+          "trp": 0,
+          "aa": 260,
+          "air": 0,
+          "asw": 0,
+          "eva": 57,
+          "spd": 26,
+          "reload": 184,
+          "hit": 136,
+          "luck": 56
+        },
+        "lv125": {
+          "hp": 4697,
+          "fp": 274,
+          "trp": 0,
+          "aa": 266,
+          "air": 0,
+          "asw": 0,
+          "eva": 59,
+          "spd": 26,
+          "reload": 186,
+          "hit": 139,
+          "luck": 56
+        }
+      }
+    },
+    "alabama": {
+      "officialName": "阿拉巴马",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 1303,
+          "fp": 81,
+          "trp": 0,
+          "aa": 80,
+          "air": 0,
+          "asw": 0,
+          "eva": 7,
+          "spd": 27,
+          "reload": 57,
+          "hit": 20,
+          "luck": 86
+        },
+        "lv100": {
+          "hp": 7046,
+          "fp": 398,
+          "trp": 0,
+          "aa": 375,
+          "air": 0,
+          "asw": 0,
+          "eva": 28,
+          "spd": 27,
+          "reload": 146,
+          "hit": 57,
+          "luck": 86
+        },
+        "lv120": {
+          "hp": 7783,
+          "fp": 419,
+          "trp": 0,
+          "aa": 408,
+          "air": 0,
+          "asw": 0,
+          "eva": 33,
+          "spd": 27,
+          "reload": 154,
+          "hit": 64,
+          "luck": 86
+        },
+        "lv125": {
+          "hp": 7967,
+          "fp": 424,
+          "trp": 0,
+          "aa": 417,
+          "air": 0,
+          "asw": 0,
+          "eva": 34,
+          "spd": 27,
+          "reload": 156,
+          "hit": 66,
+          "luck": 86
+        }
+      }
+    },
+    "st_louis": {
+      "officialName": "圣路易斯",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 620,
+          "fp": 32,
+          "trp": 0,
+          "aa": 60,
+          "air": 0,
+          "asw": 24,
+          "eva": 28,
+          "spd": 32,
+          "reload": 68,
+          "hit": 57,
+          "luck": 65
+        },
+        "lv100": {
+          "hp": 3270,
+          "fp": 162,
+          "trp": 0,
+          "aa": 290,
+          "air": 0,
+          "asw": 94,
+          "eva": 91,
+          "spd": 32,
+          "reload": 175,
+          "hit": 148,
+          "luck": 65
+        },
+        "lv120": {
+          "hp": 3604,
+          "fp": 171,
+          "trp": 0,
+          "aa": 316,
+          "air": 0,
+          "asw": 101,
+          "eva": 103,
+          "spd": 32,
+          "reload": 186,
+          "hit": 166,
+          "luck": 65
+        },
+        "lv125": {
+          "hp": 3688,
+          "fp": 174,
+          "trp": 0,
+          "aa": 323,
+          "air": 0,
+          "asw": 102,
+          "eva": 106,
+          "spd": 32,
+          "reload": 188,
+          "hit": 170,
+          "luck": 65
+        }
+      }
+    },
+    "bluemarton": {
+      "officialName": "布莱默顿",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 834,
+          "fp": 49,
+          "trp": 0,
+          "aa": 50,
+          "air": 0,
+          "asw": 0,
+          "eva": 9,
+          "spd": 26,
+          "reload": 68,
+          "hit": 45,
+          "luck": 55
+        },
+        "lv100": {
+          "hp": 4382,
+          "fp": 253,
+          "trp": 0,
+          "aa": 243,
+          "air": 0,
+          "asw": 0,
+          "eva": 49,
+          "spd": 26,
+          "reload": 174,
+          "hit": 121,
+          "luck": 55
+        },
+        "lv120": {
+          "hp": 4828,
+          "fp": 267,
+          "trp": 0,
+          "aa": 266,
+          "air": 0,
+          "asw": 0,
+          "eva": 57,
+          "spd": 26,
+          "reload": 184,
+          "hit": 136,
+          "luck": 55
+        },
+        "lv125": {
+          "hp": 4939,
+          "fp": 271,
+          "trp": 0,
+          "aa": 272,
+          "air": 0,
+          "asw": 0,
+          "eva": 59,
+          "spd": 26,
+          "reload": 186,
+          "hit": 139,
+          "luck": 55
+        }
+      }
+    },
+    "arizona": {
+      "officialName": "亚利桑那",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 1183,
+          "fp": 76,
+          "trp": 0,
+          "aa": 41,
+          "air": 0,
+          "asw": 0,
+          "eva": 4,
+          "spd": 21,
+          "reload": 51,
+          "hit": 21,
+          "luck": 17
+        },
+        "lv100": {
+          "hp": 6457,
+          "fp": 379,
+          "trp": 0,
+          "aa": 200,
+          "air": 0,
+          "asw": 0,
+          "eva": 23,
+          "spd": 21,
+          "reload": 131,
+          "hit": 62,
+          "luck": 17
+        },
+        "lv120": {
+          "hp": 7137,
+          "fp": 400,
+          "trp": 0,
+          "aa": 219,
+          "air": 0,
+          "asw": 0,
+          "eva": 27,
+          "spd": 21,
+          "reload": 139,
+          "hit": 70,
+          "luck": 17
+        },
+        "lv125": {
+          "hp": 7307,
+          "fp": 405,
+          "trp": 0,
+          "aa": 223,
+          "air": 0,
+          "asw": 0,
+          "eva": 28,
+          "spd": 21,
+          "reload": 141,
+          "hit": 72,
+          "luck": 17
+        }
+      }
+    },
+    "prince_henry": {
+      "officialName": "普林斯顿",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 799,
+          "fp": 0,
+          "trp": 0,
+          "aa": 48,
+          "air": 64,
+          "asw": 24,
+          "eva": 22,
+          "spd": 31,
+          "reload": 66,
+          "hit": 29,
+          "luck": 49
+        },
+        "lv100": {
+          "hp": 4336,
+          "fp": 0,
+          "trp": 0,
+          "aa": 233,
+          "air": 322,
+          "asw": 93,
+          "eva": 75,
+          "spd": 31,
+          "reload": 171,
+          "hit": 79,
+          "luck": 49
+        },
+        "lv120": {
+          "hp": 4791,
+          "fp": 0,
+          "trp": 0,
+          "aa": 255,
+          "air": 340,
+          "asw": 99,
+          "eva": 85,
+          "spd": 31,
+          "reload": 181,
+          "hit": 89,
+          "luck": 49
+        },
+        "lv125": {
+          "hp": 4904,
+          "fp": 0,
+          "trp": 0,
+          "aa": 261,
+          "air": 344,
+          "asw": 100,
+          "eva": 88,
+          "spd": 31,
+          "reload": 183,
+          "hit": 91,
+          "luck": 49
+        }
+      }
+    },
+    "atlanta": {
+      "officialName": "亚特兰大",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 605,
+          "fp": 24,
+          "trp": 29,
+          "aa": 81,
+          "air": 0,
+          "asw": 46,
+          "eva": 28,
+          "spd": 32,
+          "reload": 66,
+          "hit": 58,
+          "luck": 12
+        },
+        "lv100": {
+          "hp": 3191,
+          "fp": 122,
+          "trp": 149,
+          "aa": 387,
+          "air": 0,
+          "asw": 176,
+          "eva": 95,
+          "spd": 32,
+          "reload": 169,
+          "hit": 150,
+          "luck": 12
+        },
+        "lv120": {
+          "hp": 3517,
+          "fp": 129,
+          "trp": 157,
+          "aa": 422,
+          "air": 0,
+          "asw": 187,
+          "eva": 109,
+          "spd": 32,
+          "reload": 179,
+          "hit": 168,
+          "luck": 12
+        },
+        "lv125": {
+          "hp": 3598,
+          "fp": 131,
+          "trp": 159,
+          "aa": 431,
+          "air": 0,
+          "asw": 190,
+          "eva": 112,
+          "spd": 32,
+          "reload": 181,
+          "hit": 173,
+          "luck": 12
+        }
+      }
+    },
+    "west_virginia": {
+      "officialName": "西弗吉尼亚",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 1241,
+          "fp": 78,
+          "trp": 0,
+          "aa": 40,
+          "air": 0,
+          "asw": 0,
+          "eva": 4,
+          "spd": 21,
+          "reload": 55,
+          "hit": 22,
+          "luck": 61
+        },
+        "lv100": {
+          "hp": 6747,
+          "fp": 389,
+          "trp": 0,
+          "aa": 197,
+          "air": 0,
+          "asw": 0,
+          "eva": 25,
+          "spd": 21,
+          "reload": 141,
+          "hit": 62,
+          "luck": 61
+        },
+        "lv120": {
+          "hp": 7456,
+          "fp": 409,
+          "trp": 0,
+          "aa": 216,
+          "air": 0,
+          "asw": 0,
+          "eva": 30,
+          "spd": 21,
+          "reload": 149,
+          "hit": 70,
+          "luck": 61
+        },
+        "lv125": {
+          "hp": 7633,
+          "fp": 415,
+          "trp": 0,
+          "aa": 221,
+          "air": 0,
+          "asw": 0,
+          "eva": 31,
+          "spd": 21,
+          "reload": 151,
+          "hit": 72,
+          "luck": 61
+        }
+      }
+    },
+    "gridley": {
+      "officialName": "格里德利",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 292,
+          "fp": 14,
+          "trp": 84,
+          "aa": 32,
+          "air": 0,
+          "asw": 49,
+          "eva": 60,
+          "spd": 46,
+          "reload": 74,
+          "hit": 71,
+          "luck": 72
+        },
+        "lv100": {
+          "hp": 1634,
+          "fp": 69,
+          "trp": 417,
+          "aa": 159,
+          "air": 0,
+          "asw": 189,
+          "eva": 181,
+          "spd": 46,
+          "reload": 190,
+          "hit": 189,
+          "luck": 72
+        },
+        "lv120": {
+          "hp": 1810,
+          "fp": 73,
+          "trp": 438,
+          "aa": 174,
+          "air": 0,
+          "asw": 201,
+          "eva": 205,
+          "spd": 46,
+          "reload": 201,
+          "hit": 212,
+          "luck": 72
+        },
+        "lv125": {
+          "hp": 1854,
+          "fp": 74,
+          "trp": 444,
+          "aa": 177,
+          "air": 0,
+          "asw": 204,
+          "eva": 210,
+          "spd": 46,
+          "reload": 204,
+          "hit": 218,
+          "luck": 72
+        }
+      }
+    },
+    "shinano": {
+      "officialName": "信浓",
+      "match": "alias",
+      "tiers": {
+        "base": {
+          "hp": 1462,
+          "fp": 0,
+          "trp": 0,
+          "aa": 60,
+          "air": 84,
+          "asw": 0,
+          "eva": 11,
+          "spd": 28,
+          "reload": 46,
+          "hit": 27,
+          "luck": 32
+        },
+        "lv100": {
+          "hp": 7810,
+          "fp": 0,
+          "trp": 0,
+          "aa": 290,
+          "air": 415,
+          "asw": 0,
+          "eva": 42,
+          "spd": 28,
+          "reload": 119,
+          "hit": 70,
+          "luck": 32
+        },
+        "lv120": {
+          "hp": 8616,
+          "fp": 0,
+          "trp": 0,
+          "aa": 317,
+          "air": 437,
+          "asw": 0,
+          "eva": 49,
+          "spd": 28,
+          "reload": 126,
+          "hit": 78,
+          "luck": 32
+        },
+        "lv125": {
+          "hp": 8818,
+          "fp": 0,
+          "trp": 0,
+          "aa": 324,
+          "air": 443,
+          "asw": 0,
+          "eva": 50,
+          "spd": 28,
+          "reload": 128,
+          "hit": 80,
+          "luck": 32
+        }
+      }
+    },
+    "ferry": {
+      "officialName": "科隆",
+      "match": "alias",
+      "tiers": {
+        "base": {
+          "hp": 578,
+          "fp": 28,
+          "trp": 51,
+          "aa": 63,
+          "air": 0,
+          "asw": 25,
+          "eva": 29,
+          "spd": 32,
+          "reload": 64,
+          "hit": 51,
+          "luck": 62
+        },
+        "lv100": {
+          "hp": 3059,
+          "fp": 144,
+          "trp": 258,
+          "aa": 305,
+          "air": 0,
+          "asw": 98,
+          "eva": 107,
+          "spd": 32,
+          "reload": 165,
+          "hit": 136,
+          "luck": 62
+        },
+        "lv120": {
+          "hp": 3372,
+          "fp": 152,
+          "trp": 273,
+          "aa": 334,
+          "air": 0,
+          "asw": 105,
+          "eva": 122,
+          "spd": 32,
+          "reload": 175,
+          "hit": 153,
+          "luck": 62
+        },
+        "lv125": {
+          "hp": 3450,
+          "fp": 155,
+          "trp": 276,
+          "aa": 341,
+          "air": 0,
+          "asw": 107,
+          "eva": 126,
+          "spd": 32,
+          "reload": 177,
+          "hit": 157,
+          "luck": 62
+        }
+      },
+      "retrofit": {
+        "lv100": {
+          "hp": 3299,
+          "fp": 164,
+          "trp": 303,
+          "aa": 320,
+          "air": 0,
+          "asw": 98,
+          "eva": 107,
+          "spd": 32,
+          "reload": 170,
+          "hit": 136,
+          "luck": 62
+        },
+        "lv120": {
+          "hp": 3612,
+          "fp": 172,
+          "trp": 318,
+          "aa": 349,
+          "air": 0,
+          "asw": 105,
+          "eva": 122,
+          "spd": 32,
+          "reload": 180,
+          "hit": 153,
+          "luck": 62
+        },
+        "lv125": {
+          "hp": 3690,
+          "fp": 175,
+          "trp": 321,
+          "aa": 356,
+          "air": 0,
+          "asw": 107,
+          "eva": 126,
+          "spd": 32,
+          "reload": 182,
+          "hit": 157,
+          "luck": 62
+        }
+      }
+    },
+    "yujiro": {
+      "officialName": "欧根亲王",
+      "match": "alias",
+      "tiers": {
+        "base": {
+          "hp": 1099,
+          "fp": 43,
+          "trp": 28,
+          "aa": 38,
+          "air": 0,
+          "asw": 0,
+          "eva": 9,
+          "spd": 25,
+          "reload": 67,
+          "hit": 44,
+          "luck": 78
+        },
+        "lv100": {
+          "hp": 5683,
+          "fp": 214,
+          "trp": 144,
+          "aa": 187,
+          "air": 0,
+          "asw": 0,
+          "eva": 53,
+          "spd": 25,
+          "reload": 173,
+          "hit": 114,
+          "luck": 78
+        },
+        "lv120": {
+          "hp": 6252,
+          "fp": 226,
+          "trp": 153,
+          "aa": 205,
+          "air": 0,
+          "asw": 0,
+          "eva": 62,
+          "spd": 25,
+          "reload": 182,
+          "hit": 128,
+          "luck": 78
+        },
+        "lv125": {
+          "hp": 6394,
+          "fp": 230,
+          "trp": 155,
+          "aa": 209,
+          "air": 0,
+          "asw": 0,
+          "eva": 64,
+          "spd": 25,
+          "reload": 185,
+          "hit": 131,
+          "luck": 78
+        }
+      }
+    },
+    "london": {
+      "officialName": "伦敦",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 607,
+          "fp": 41,
+          "trp": 41,
+          "aa": 40,
+          "air": 0,
+          "asw": 0,
+          "eva": 9,
+          "spd": 25,
+          "reload": 61,
+          "hit": 38,
+          "luck": 62
+        },
+        "lv100": {
+          "hp": 3229,
+          "fp": 211,
+          "trp": 211,
+          "aa": 194,
+          "air": 0,
+          "asw": 0,
+          "eva": 57,
+          "spd": 25,
+          "reload": 156,
+          "hit": 103,
+          "luck": 62
+        },
+        "lv120": {
+          "hp": 3561,
+          "fp": 223,
+          "trp": 223,
+          "aa": 212,
+          "air": 0,
+          "asw": 0,
+          "eva": 67,
+          "spd": 25,
+          "reload": 165,
+          "hit": 116,
+          "luck": 62
+        },
+        "lv125": {
+          "hp": 3644,
+          "fp": 226,
+          "trp": 226,
+          "aa": 217,
+          "air": 0,
+          "asw": 0,
+          "eva": 69,
+          "spd": 25,
+          "reload": 167,
+          "hit": 120,
+          "luck": 62
+        }
+      },
+      "retrofit": {
+        "lv100": {
+          "hp": 3509,
+          "fp": 221,
+          "trp": 211,
+          "aa": 279,
+          "air": 0,
+          "asw": 0,
+          "eva": 72,
+          "spd": 25,
+          "reload": 156,
+          "hit": 123,
+          "luck": 62
+        },
+        "lv120": {
+          "hp": 3841,
+          "fp": 233,
+          "trp": 223,
+          "aa": 297,
+          "air": 0,
+          "asw": 0,
+          "eva": 82,
+          "spd": 25,
+          "reload": 165,
+          "hit": 136,
+          "luck": 62
+        },
+        "lv125": {
+          "hp": 3924,
+          "fp": 236,
+          "trp": 226,
+          "aa": 302,
+          "air": 0,
+          "asw": 0,
+          "eva": 84,
+          "spd": 25,
+          "reload": 167,
+          "hit": 140,
+          "luck": 62
+        }
+      }
+    },
+    "ark": {
+      "officialName": "皇家方舟",
+      "match": "alias",
+      "tiers": {
+        "base": {
+          "hp": 1027,
+          "fp": 0,
+          "trp": 0,
+          "aa": 58,
+          "air": 76,
+          "asw": 0,
+          "eva": 13,
+          "spd": 31,
+          "reload": 43,
+          "hit": 35,
+          "luck": 87
+        },
+        "lv100": {
+          "hp": 5531,
+          "fp": 0,
+          "trp": 0,
+          "aa": 281,
+          "air": 379,
+          "asw": 0,
+          "eva": 46,
+          "spd": 31,
+          "reload": 111,
+          "hit": 91,
+          "luck": 87
+        },
+        "lv120": {
+          "hp": 6107,
+          "fp": 0,
+          "trp": 0,
+          "aa": 307,
+          "air": 400,
+          "asw": 0,
+          "eva": 53,
+          "spd": 31,
+          "reload": 117,
+          "hit": 102,
+          "luck": 87
+        },
+        "lv125": {
+          "hp": 6251,
+          "fp": 0,
+          "trp": 0,
+          "aa": 314,
+          "air": 405,
+          "asw": 0,
+          "eva": 55,
+          "spd": 31,
+          "reload": 119,
+          "hit": 104,
+          "luck": 87
+        }
+      },
+      "retrofit": {
+        "lv100": {
+          "hp": 5741,
+          "fp": 0,
+          "trp": 0,
+          "aa": 331,
+          "air": 414,
+          "asw": 0,
+          "eva": 46,
+          "spd": 31,
+          "reload": 126,
+          "hit": 96,
+          "luck": 87
+        },
+        "lv120": {
+          "hp": 6317,
+          "fp": 0,
+          "trp": 0,
+          "aa": 357,
+          "air": 435,
+          "asw": 0,
+          "eva": 53,
+          "spd": 31,
+          "reload": 132,
+          "hit": 107,
+          "luck": 87
+        },
+        "lv125": {
+          "hp": 6461,
+          "fp": 0,
+          "trp": 0,
+          "aa": 364,
+          "air": 440,
+          "asw": 0,
+          "eva": 55,
+          "spd": 31,
+          "reload": 134,
+          "hit": 109,
+          "luck": 87
+        }
+      }
+    },
+    "cleveland": {
+      "officialName": "克利夫兰",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 751,
+          "fp": 31,
+          "trp": 0,
+          "aa": 61,
+          "air": 0,
+          "asw": 24,
+          "eva": 30,
+          "spd": 32,
+          "reload": 69,
+          "hit": 56,
+          "luck": 71
+        },
+        "lv100": {
+          "hp": 3913,
+          "fp": 156,
+          "trp": 0,
+          "aa": 295,
+          "air": 0,
+          "asw": 94,
+          "eva": 94,
+          "spd": 32,
+          "reload": 178,
+          "hit": 146,
+          "luck": 71
+        },
+        "lv120": {
+          "hp": 4307,
+          "fp": 165,
+          "trp": 0,
+          "aa": 323,
+          "air": 0,
+          "asw": 100,
+          "eva": 106,
+          "spd": 32,
+          "reload": 189,
+          "hit": 163,
+          "luck": 71
+        },
+        "lv125": {
+          "hp": 4406,
+          "fp": 167,
+          "trp": 0,
+          "aa": 330,
+          "air": 0,
+          "asw": 102,
+          "eva": 109,
+          "spd": 32,
+          "reload": 191,
+          "hit": 168,
+          "luck": 71
+        }
+      }
+    },
+    "birmingham": {
+      "officialName": "伯明翰",
+      "match": "exact",
+      "tiers": {
+        "base": {
+          "hp": 730,
+          "fp": 31,
+          "trp": 0,
+          "aa": 62,
+          "air": 0,
+          "asw": 24,
+          "eva": 29,
+          "spd": 32,
+          "reload": 68,
+          "hit": 58,
+          "luck": 48
+        },
+        "lv100": {
+          "hp": 3805,
+          "fp": 159,
+          "trp": 0,
+          "aa": 300,
+          "air": 0,
+          "asw": 93,
+          "eva": 95,
+          "spd": 32,
+          "reload": 175,
+          "hit": 151,
+          "luck": 48
+        },
+        "lv120": {
+          "hp": 4189,
+          "fp": 168,
+          "trp": 0,
+          "aa": 327,
+          "air": 0,
+          "asw": 99,
+          "eva": 108,
+          "spd": 32,
+          "reload": 185,
+          "hit": 169,
+          "luck": 48
+        },
+        "lv125": {
+          "hp": 4285,
+          "fp": 170,
+          "trp": 0,
+          "aa": 334,
+          "air": 0,
+          "asw": 100,
+          "eva": 111,
+          "spd": 32,
+          "reload": 188,
+          "hit": 174,
+          "luck": 48
+        }
+      }
+    }
+  }
+}
