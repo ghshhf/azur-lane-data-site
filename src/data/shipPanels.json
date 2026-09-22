@@ -730,7 +730,7 @@
     },
     "shinano": {
       "officialName": "信浓",
-      "match": "alias",
+      "match": "exact",
       "tiers": {
         "base": {
           "hp": 1462,
@@ -788,7 +788,7 @@
     },
     "ferry": {
       "officialName": "科隆",
-      "match": "alias",
+      "match": "exact",
       "tiers": {
         "base": {
           "hp": 578,
@@ -887,7 +887,7 @@
     },
     "yujiro": {
       "officialName": "欧根亲王",
-      "match": "alias",
+      "match": "exact",
       "tiers": {
         "base": {
           "hp": 1099,
@@ -1044,7 +1044,7 @@
     },
     "ark": {
       "officialName": "皇家方舟",
-      "match": "alias",
+      "match": "exact",
       "tiers": {
         "base": {
           "hp": 1027,

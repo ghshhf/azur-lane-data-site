@@ -186,7 +186,7 @@
     "playerInfo": { "owned": true, "level": 99, "fleet": 1, "position": "front", "flagship": false, "fleetStats": { "hp": 1359, "综合性能": 2778 } }
   },
   {
-    "id": "shinano", "name": "十纱", "nameEn": "IJN Shinano",
+    "id": "shinano", "name": "信浓", "nameEn": "IJN Shinano",
     "rarity": "SSR", "shipType": "CV", "faction": "重樱", "levelCap": 120,
     "stats": { "hp": 5800, "fp": 0, "trp": 0, "aa": 140, "air": 520, "asw": 0, "spd": 28, "luck": 75 },
     "slots": ["舰载机", "舰载机", "舰载机", "防空"],
@@ -199,7 +199,7 @@
     "playerInfo": { "owned": false }
   },
   {
-    "id": "ferry", "name": "冯矢", "nameEn": "KMS Köln",
+    "id": "ferry", "name": "科隆", "nameEn": "KMS Köln",
     "rarity": "SSR", "shipType": "CL", "faction": "铁血", "levelCap": 110,
     "stats": { "hp": 2600, "fp": 180, "trp": 150, "aa": 170, "air": 0, "asw": 0, "spd": 34, "luck": 80 },
     "slots": ["轻巡主炮", "轻巡主炮", "鱼雷", "防空"],
@@ -212,8 +212,8 @@
     "playerInfo": { "owned": false }
   },
   {
-    "id": "yujiro", "name": "优玖露", "nameEn": "HMS Eugen",
-    "rarity": "SSR", "shipType": "CL", "faction": "铁血", "levelCap": 110,
+    "id": "yujiro", "name": "欧根亲王", "nameEn": "KMS Prinz Eugen",
+    "rarity": "SSR", "shipType": "CA", "faction": "铁血", "levelCap": 110,
     "stats": { "hp": 2500, "fp": 165, "trp": 120, "aa": 190, "air": 0, "asw": 0, "spd": 34, "luck": 85 },
     "slots": ["轻巡主炮", "轻巡主炮", "鱼雷", "防空"],
     "skills": [
@@ -238,8 +238,8 @@
     "playerInfo": { "owned": false }
   },
   {
-    "id": "ark", "name": "发", "nameEn": "KMS Ark Royal",
-    "rarity": "SSR", "shipType": "DD", "faction": "皇家", "levelCap": 100,
+    "id": "ark", "name": "皇家方舟", "nameEn": "HMS Ark Royal",
+    "rarity": "SSR", "shipType": "CV", "faction": "皇家", "levelCap": 100,
     "stats": { "hp": 1800, "fp": 100, "trp": 280, "aa": 180, "air": 0, "asw": 120, "spd": 42, "luck": 80 },
     "slots": ["炮击", "鱼雷", "鱼雷", "防空"],
     "skills": [

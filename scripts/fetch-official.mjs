@@ -1,11 +1,11 @@
 // 从官方档案（AzurAPI）生成本站的舰娘槽位/效率与分档面板数据。
 //
 // 为什么需要这一步：本站 ships.json 的 slots 是「去重后的槽型列举」，不是游戏内的真实槽位。
-// 例：阿拉巴马在游戏里是 3 主炮 + 3 副炮 + 1 防空 = 7 槽，本站写 4 项且丢掉了全部副炮槽；
-// 西弗吉尼亚多出 2 个游戏内并不存在的「设备」槽。槽位数错 → 配装求解器与战力合成全错。
+// 例：阿拉巴马在游戏里是 3 主炮 + 3 副炮 + 1 防空 = 7 武器槽（另加 2 设备槽），旧数据写成 3 主炮 + 1 防空，
+// 丢掉全部副炮槽；西弗吉尼亚多出 2 个游戏内并不存在的「设备」槽。槽位数错 → 配装求解器与战力合成全错。
 //
 // 官方档案同时提供了三件本站缺的东西：
-//   ① slots[].max            —— 该槽位数量
+//   ① slots[].max            —— 该类型装备的槽位数（全库分布 1–4，统一按槽数处理）
 //   ② min/max/kaiEfficiency  —— 未突破 / 满突破 / 改造后的武器效率
 //   ③ stats.{base,100,120,125}[Retrofit] —— 分档面板（本站 stats 是按舰种拍的概数）
 //
@@ -187,13 +187,24 @@ for (const site of siteShips) {
   }
 
   // ① 槽位 + 效率
-  const slots = []
+  // AzurAPI slots[].max 即「该类型装备的槽位数」：全库 max 分布为 1–4（无载机量级大数），
+  // 战列/航母/驱逐均如此（阿拉巴马 BB Guns=max3=3 主炮槽，企业 Fighters=max3=3 战斗机槽）。
+  // 故统一 count = max，按官方类型去重展开即可，无需按舰种特判。
+  const rawMapped = []
   for (const sl of hit.slots ?? []) {
     const mapped = resolveSlotType(sl.type)
     if (!mapped) {
       report.miss.push(`${site.name}: 槽类型未映射 ${sl.type}`)
       continue
     }
+    rawMapped.push({ sl, mapped })
+  }
+
+  const seen = new Set()
+  const slots = []
+  for (const { sl, mapped } of rawMapped) {
+    if (seen.has(sl.type)) continue
+    seen.add(sl.type)
     slots.push({
       official: sl.type,
       label: mapped.label,
@@ -267,7 +278,7 @@ writeFileSync(
     {
       _meta: {
         ...meta,
-        note: '槽位顺序与数量即游戏内装备槽。效率三档：min=未突破、max=满突破、kai=改造后。',
+        note: '槽位与效率来自游戏档案。slots[].max 即该类型槽位数（全库 1–4）；效率三档：min=未突破、max=满突破、kai=改造后。',
       },
       ships: slotsOut,
     },

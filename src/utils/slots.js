@@ -6,7 +6,7 @@ import shipSlotsData from '../data/shipSlots.json' with { type: 'json' }
 //
 // 槽位来源优先级：
 //   ① 官方档案 src/data/shipSlots.json（scripts/fetch-official.mjs 生成）
-//      —— slots[].count 即游戏内槽位数，count 来自官方 max（满突破槽位数）
+//      —— slots[].count 即游戏内槽位数，等于官方 slots[].max（全库 1–4，已逐舰种核对）。
 //   ② 回退：ships.json 的 slots 字段（本站手录，是「去重后的槽型列举」，数量不可信）
 //
 // 设备槽是补出来的：官方 slots 只列武器槽与改造类槽，碧蓝每艘船另有 2 个通用设备槽。
@@ -14,7 +14,6 @@ import shipSlotsData from '../data/shipSlots.json' with { type: 'json' }
 // ─────────────────────────────────────────────────────────────────────────────
 
 const AUX_SLOT = { types: ['设备', '弹药'], checkFit: false }
-const AUG_SLOT = { types: ['特殊兵装'], checkFit: false }
 export const DEFAULT_AUX_SLOTS = 2
 
 function mkSlot(type, types, checkFit, efficiency, source, official) {
@@ -54,9 +53,6 @@ export function slotLayout(ship) {
   const aux = Math.max(siteAux, DEFAULT_AUX_SLOTS)
   for (let i = 0; i < aux; i++) {
     out.push(mkSlot('设备', AUX_SLOT.types, AUX_SLOT.checkFit, 1, i < siteAux ? 'site' : 'default'))
-  }
-  for (let i = 0; i < countOf(site, '特殊兵装'); i++) {
-    out.push(mkSlot('特殊兵装', AUG_SLOT.types, AUG_SLOT.checkFit, 1, 'site'))
   }
   return out
 }

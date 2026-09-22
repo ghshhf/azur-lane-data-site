@@ -13,20 +13,18 @@
     "防空": { "types": ["防空"], "checkFit": true },
     "舰载机": { "types": ["舰载机"], "checkFit": true },
     "设备": { "types": ["设备", "弹药"], "checkFit": false },
-    "特殊兵装": { "types": ["特殊兵装"], "checkFit": false },
     "水下装备": { "types": ["水下装备"], "checkFit": true }
   },
   "efficiencySlots": ["战列主炮", "重巡主炮", "轻巡主炮", "炮击", "通用炮", "副炮", "鱼雷", "鱼雷/副炮", "防空", "舰载机"],
   "notes": {
     "效率来源": "官方档案 slots[].minEfficiency / maxEfficiency / kaiEfficiency，含义分别是未突破 / 满突破 / 改造后。突破每阶提升见各舰的 limitBreaks（如阿拉巴马 100% → +5% → +10% → +15% → 130%）。",
     "设备槽": "官方 slots 字段只列武器槽与改造类槽，不列通用设备槽。碧蓝每艘船固定 2 个设备槽（战列装备位＝主炮、副炮、防空、设备×2），故设备槽由本站按固定规则补齐。",
-    "特殊兵装槽": "官方 slots 里对应 Augmentation 项，多数船没有；本站按 ships.json 已有记录补齐。"
+    "特殊兵装槽": "官方 slots 里对应 Augmentation 项，多数船没有；本站尚未收录任何特殊兵装装备，求解器暂不生成该槽。"
   },
   "evidence": {
     "副炮 checkFit=false": "副炮槽在游戏内接受轻巡/驱逐主炮与防空炮，不按 fitShipTypes 过滤。西弗吉尼亚副炮槽实装「双联装120mm主炮」（该装备 fitShipTypes=['DD']）。",
     "通用炮 checkFit=false": "官方 CL/DD Guns 槽（如亚特兰大 main gun）同时接受轻巡主炮与驱逐主炮，两种 fitShipTypes 都可能出现，故不做舰种过滤。",
     "设备接受弹药": "西弗吉尼亚 设备2 槽实装「九一式穿甲弹」（type=弹药）。弹药属配弹类，随设备槽进入。",
-    "特殊兵装 checkFit=false": "特拉法尔加(DD) 特殊兵装槽实装「高性能舵机」（fitShipTypes=['DD','CL']）；该类槽位数量极少，按名称直配。",
     "水下装备": "仅 fish_mita(SS) 有该槽位，目前无持有装备可装。"
   }
 }

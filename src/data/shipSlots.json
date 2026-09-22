@@ -5,7 +5,7 @@
     "endpoint": "dist/ships.json",
     "fetchedAt": "2026-09-22",
     "matched": "18/24",
-    "note": "槽位顺序与数量即游戏内装备槽。效率三档：min=未突破、max=满突破、kai=改造后。"
+    "note": "槽位与效率来自游戏档案。slots[].max 即该类型槽位数（全库 1–4）；效率三档：min=未突破、max=满突破、kai=改造后。"
   },
   "ships": {
     "laffey_ii": {
@@ -582,7 +582,7 @@
       "officialId": "231",
       "hullType": "Aircraft Carrier",
       "siteType": "CV",
-      "match": "alias",
+      "match": "exact",
       "slots": [
         {
           "official": "Fighters / Dive Bombers (LB1) / Torpedo Bombers (LB1)",
@@ -633,7 +633,7 @@
       "officialId": "240",
       "hullType": "Light Cruiser",
       "siteType": "CL",
-      "match": "alias",
+      "match": "exact",
       "slots": [
         {
           "official": "CL Guns",
@@ -684,7 +684,7 @@
       "officialId": "244",
       "hullType": "Heavy Cruiser",
       "siteType": "CA",
-      "match": "alias",
+      "match": "exact",
       "slots": [
         {
           "official": "CA Guns",
@@ -788,22 +788,8 @@
       "officialId": "144",
       "hullType": "Aircraft Carrier",
       "siteType": "CV",
-      "match": "alias",
+      "match": "exact",
       "slots": [
-        {
-          "official": "Torpedo Bombers",
-          "label": "舰载机",
-          "types": [
-            "舰载机"
-          ],
-          "checkFit": true,
-          "count": 3,
-          "eff": {
-            "min": 125,
-            "max": 140,
-            "kai": 143
-          }
-        },
         {
           "official": "Torpedo Bombers",
           "label": "舰载机",

@@ -22,7 +22,7 @@ export { slotLayout, slotSource, slotEfficiency, canEquip, equipShipType, shipTy
 //
 // v2 修正的三处口径错误：
 //   - 槽位：此前用 ships.json 的 slots（去重列举），阿拉巴马被记成 4 槽、丢掉全部 3 个副炮槽；
-//     西弗吉尼亚多出 2 个游戏内不存在的设备槽。现改用官方槽位表。
+//     西弗吉尼亚多出 2 个游戏内不存在的设备槽。现改用官方槽位表，并把战列主炮的「炮座数」校正为 1 个装备槽。
 //   - 面板：此前用 ships.stats（按舰种拍的概数，BB 偏大 71%~140%）。现改用官方分档面板按等级插值。
 //   - 键名：舰娘的 spd 是航速、装备的 spd 是机动，此前同键相加，生存轴实际在拿航速当生存因子。
 //     现统一为 eva=机动、spd=航速。
@@ -36,7 +36,7 @@ export const COMBAT_MODEL = {
   // 调面板/槽位口径后必须跑 npm run test:engine 看值域诊断并重设。
   axes: {
     weight: { dps: 6, shell: 0.5, aaDps: 10, eva: 10, hpBonus: 2, hpRecovery: 10 },
-    anchor: { output: 3930, survival: 8000, antiair: 1855 },
+    anchor: { output: 2686, survival: 8442, antiair: 1856 },
   },
   profiles: {
     balanced: { label: '均衡', output: 0.45, survival: 0.35, antiair: 0.2 },
