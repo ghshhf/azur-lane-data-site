@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "note": "槽位类型 → 可装装备类型的可装性口径。自建，来源＝游戏机制推导 + 实装记录反推（ships.equipment.actual、fleets.equipmentTips）。",
+  "rules": {
+    "战列主炮": { "types": ["炮击"], "checkFit": true },
+    "重巡主炮": { "types": ["炮击"], "checkFit": true },
+    "轻巡主炮": { "types": ["炮击"], "checkFit": true },
+    "炮击": { "types": ["炮击"], "checkFit": true },
+    "副炮": { "types": ["炮击", "防空"], "checkFit": false },
+    "鱼雷": { "types": ["鱼雷"], "checkFit": true },
+    "防空": { "types": ["防空"], "checkFit": true },
+    "舰载机": { "types": ["舰载机"], "checkFit": true },
+    "设备": { "types": ["设备", "弹药"], "checkFit": false },
+    "特殊兵装": { "types": ["特殊兵装"], "checkFit": false },
+    "水下装备": { "types": ["水下装备"], "checkFit": true }
+  },
+  "efficiencySlots": ["战列主炮", "重巡主炮", "轻巡主炮", "炮击", "副炮", "鱼雷", "防空", "舰载机"],
+  "evidence": {
+    "副炮 checkFit=false": "西弗吉尼亚(BB) 副炮槽实装「双联装120mm主炮」，而该装备 fitShipTypes=['DD']。副炮槽在游戏内接受轻巡/驱逐主炮与防空炮，故不按 fitShipTypes 过滤。",
+    "设备接受弹药": "西弗吉尼亚 设备2 槽实装「九一式穿甲弹」（type=弹药）。弹药属配弹/附加装备，随设备槽进入。",
+    "特殊兵装 checkFit=false": "特拉法尔加(DD) 特殊兵装槽实装「高性能舵机」（fitShipTypes=['DD','CL']）；该类槽位数量极少，按名称直配。",
+    "水下装备": "仅 fish_mita(SS) 有该槽位，目前无持有装备可装。"
+  }
+}

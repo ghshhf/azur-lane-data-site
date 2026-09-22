@@ -3,10 +3,20 @@
 // 用法：npm run test:smoke
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, join } from 'node:path'
+import { writeFileSync } from 'node:fs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // Windows 下 Node 的 ESM 加载器要求绝对路径写成 file:// URL
 const { renderRoute, allRoutes } = await import(pathToFileURL(join(root, '.smoke', 'entry.js')).href)
+
+// SMOKE_DUMP=<路由> 时把该路由的渲染结果落盘，便于人工核对页面内容
+if (process.env.SMOKE_DUMP) {
+  const target = process.env.SMOKE_DUMP
+  const out = process.env.SMOKE_DUMP_OUT ?? join(root, '.smoke', 'dump.html')
+  writeFileSync(out, renderRoute(target), 'utf8')
+  console.log(`已导出 ${target} → ${out}`)
+  process.exit(0)
+}
 
 const routes = allRoutes()
 const failures = []

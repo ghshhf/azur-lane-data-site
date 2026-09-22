@@ -17,7 +17,7 @@ export function renderRoute(path) {
 }
 
 export function allRoutes() {
-  const routes = ['/', '/ships', '/equipment', '/fleets', '/stages', '/no-such-page']
+  const routes = ['/', '/ships', '/equipment', '/fleets', '/stages', '/fitting', '/no-such-page']
   for (const s of ships) routes.push(`/ships/${s.id}`)
   for (const e of equipment) routes.push(`/equipment/${e.id}`)
   for (const f of fleets) routes.push(`/fleets/${f.id}`)

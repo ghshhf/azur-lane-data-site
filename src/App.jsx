@@ -5,6 +5,7 @@ import Ships from './pages/Ships.jsx'
 import Equipment from './pages/Equipment.jsx'
 import Fleets from './pages/Fleets.jsx'
 import Stages from './pages/Stages.jsx'
+import Fitting from './pages/Fitting.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ShipDetail from './components/ShipDetail.jsx'
 import EquipmentDetail from './components/EquipmentDetail.jsx'
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/fleets/:id" element={<FleetDetail />} />
         <Route path="/stages" element={<Stages />} />
         <Route path="/stages/:id" element={<StageDetail />} />
+        <Route path="/fitting" element={<Fitting />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

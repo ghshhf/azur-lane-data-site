@@ -9,7 +9,9 @@
     "prebuild": "node scripts/validate-data.mjs",
     "build": "vite build",
     "preview": "vite preview",
-    "test:smoke": "vite build --ssr scripts/smoke/entry.jsx --outDir .smoke --emptyOutDir --logLevel warn && node scripts/smoke.mjs"
+    "test": "npm run validate && npm run build && npm run test:engine && npm run test:smoke",
+    "test:smoke": "vite build --ssr scripts/smoke/entry.jsx --outDir .smoke --emptyOutDir --logLevel warn && node scripts/smoke.mjs",
+    "test:engine": "vite build --ssr scripts/engine/entry.js --outDir .engine --emptyOutDir --logLevel warn && node scripts/test-engine.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.441.0",

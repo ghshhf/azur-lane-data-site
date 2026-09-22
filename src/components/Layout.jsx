@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { Anchor, Ship, Wrench, Users, MapPin } from 'lucide-react'
+import { Anchor, Ship, Wrench, Users, MapPin, Swords } from 'lucide-react'
 import meta from '../data/meta.json'
 
 const navItems = [
   { to: '/', label: '首页', icon: Anchor, end: true },
   { to: '/ships', label: '舰娘图鉴', icon: Ship },
   { to: '/equipment', label: '装备图鉴', icon: Wrench },
+  { to: '/fitting', label: '配装台', icon: Swords },
   { to: '/fleets', label: '阵容推荐', icon: Users },
   { to: '/stages', label: '关卡活动', icon: MapPin },
 ]

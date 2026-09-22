@@ -5,3 +5,4 @@ dist/
 .env
 .trae-html-share-packages/
 .smoke/
+.engine/

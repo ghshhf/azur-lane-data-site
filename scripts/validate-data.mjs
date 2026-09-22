@@ -89,7 +89,33 @@ for (const stage of stages) {
   }
 }
 
-// 4. 统计与孤儿数据（仅提示，不阻断）
+// 4. 配装可装性规则（slotRules.json）：配装台的地基，规则与数据脱钩会让整个求解器失效
+const slotRules = load('slotRules.json')
+const rules = slotRules.rules ?? {}
+const ruleTypes = new Set(Object.values(rules).flatMap(r => r.types ?? []))
+const equipTypes = new Set(equipment.map(e => e.type))
+const dataSlotTypes = new Set(ships.flatMap(s => s.slots ?? []))
+for (const t of dataSlotTypes) {
+  if (!rules[t]) fail(`slotRules.json：数据里出现的槽位类型「${t}」没有可装性规则`)
+}
+for (const t of Object.keys(rules)) {
+  if (!dataSlotTypes.has(t)) warn(`slotRules.json：规则「${t}」在舰娘槽位数据里没有对应，可能是拼写残留`)
+  for (const et of rules[t].types ?? []) {
+    if (!equipTypes.has(et)) fail(`slotRules.json：「${t}」映射到不存在的装备类型「${et}」`)
+  }
+}
+// 每个槽位类型至少要有一件装备可装，否则该槽位在界面上永远是空的
+for (const t of dataSlotTypes) {
+  const reachable = equipment.filter(e => (rules[t]?.types ?? []).includes(e.type))
+  if (reachable.length === 0) warn(`槽位类型「${t}」在装备表里没有任何可装装备（界面显示为空槽）`)
+}
+if (slotRules.efficiencySlots) {
+  for (const t of slotRules.efficiencySlots) {
+    if (!rules[t]) fail(`slotRules.json：efficiencySlots 里的「${t}」不是有效槽位类型`)
+  }
+}
+
+// 5. 统计与孤儿数据（仅提示，不阻断）
 const inFleet = new Set(fleets.flatMap(f => [...(f.front ?? []), ...(f.back ?? [])]))
 const orphanShips = [...shipIds].filter(id => !inFleet.has(id))
 const referencedEquip = new Set([
@@ -105,6 +131,7 @@ const collect = (rows, key) => [...new Set(rows.map(r => r?.[key]).filter(v => v
 const summary = [
   ['舰娘稀有度', collect(ships, 'rarity')],
   ['舰娘舰种', collect(ships, 'shipType')],
+  ['舰娘槽位', [...dataSlotTypes].sort()],
   ['装备类型', collect(equipment, 'type')],
   ['装备稀有度', collect(equipment, 'rarity')],
   ['阵容分类', collect(fleets, 'category')],
